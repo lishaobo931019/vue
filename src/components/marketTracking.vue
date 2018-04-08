@@ -1,52 +1,73 @@
 <template>
-	
 	<div>
 		<el-form ref="form" :model="sizeForm" label-width="80px" size="mini">
-				  	<el-form-item label="拜访对象" >
-				  	<el-input></el-input>
-				  </el-form-item>
-				  <el-form-item label="责任人">
-				  	<el-input></el-input>
-				  </el-form-item>
-			  <el-form-item label="任务类型">
-			    <el-select v-model="sizeForm.region" placeholder="无">
-			      <el-option label="区域一" value="shanghai"></el-option>
-			      <el-option label="区域二" value="beijing"></el-option>
-			    </el-select>
-			  </el-form-item>
-			   <el-form-item label="返回类型">
-			    <el-select v-model="sizeForm.region" placeholder="无">
-			      <el-option label="区域一" value="shanghai"></el-option>
-			      <el-option label="区域二" value="beijing"></el-option>
-			    </el-select>
-			  </el-form-item>
-			   <el-form-item label="所在地区">
-			    <el-select v-model="sizeForm.region" placeholder="无">
-			      <el-option label="区域一" value="shanghai"></el-option>
-			      <el-option label="区域二" value="beijing"></el-option>
-			    </el-select>
-			  </el-form-item>
-			   <el-form-item label="所在片区">
-			    <el-select v-model="sizeForm.region" placeholder="无">
-			      <el-option label="区域一" value="shanghai"></el-option>
-			      <el-option label="区域二" value="beijing"></el-option>
-			    </el-select>
-			  </el-form-item>
-			  <el-form-item label="调查时间">
+			<table width="100%">
+				<!--第一行-->
+				<tr>
+					<td>
+						<el-form-item label="拜访对象" >
+				  			<el-input></el-input>
+				  		</el-form-item>
+					</td>
+					<td>
+						<el-form-item label="责任人">
+				  			<el-input></el-input>
+				  		</el-form-item>
+					</td>
+				</tr>
+				<!--第二行-->
+				<tr>
+					<td>
+						<el-form-item label="任务类型">
+					    	<el-select v-model="sizeForm.region" placeholder="无">
+					      		<el-option label="区域一" value="shanghai"></el-option>
+					      		<el-option label="区域二" value="beijing"></el-option>
+					    	</el-select>
+					  	</el-form-item>
+					</td>
+					<td>
+						<el-form-item label="返回类型">
+				    		<el-select v-model="sizeForm.region" placeholder="无">
+				      			<el-option label="区域一" value="shanghai"></el-option>
+				      			<el-option label="区域二" value="beijing"></el-option>
+				    		</el-select>
+				  		</el-form-item>
+					</td>
+				</tr>
+				<!--第三行-->
+				<tr>
+					<td>
+						<el-form-item label="所在地区">
+			    			<el-select v-model="sizeForm.region" placeholder="无">
+			      				<el-option label="区域一" value="shanghai"></el-option>
+			      				<el-option label="区域二" value="beijing"></el-option>
+			    			</el-select>
+			  			</el-form-item>
+					</td>
+					<td>
+						<el-form-item label="所在片区">
+			    			<el-select v-model="sizeForm.region" placeholder="无">
+			      				<el-option label="区域一" value="shanghai"></el-option>
+			      				<el-option label="区域二" value="beijing"></el-option>
+			   				</el-select>
+			  			</el-form-item>
+					</td>
+				</tr>
+			</table>
+			<!---->
+			<el-form-item label="调查时间">
 			    <el-col :span="11">
-			      <el-date-picker type="date" placeholder="选择日期" v-model="sizeForm.date1" style="width: 100%;"></el-date-picker>
+			    	<el-date-picker type="date" placeholder="选择日期" v-model="sizeForm.date1" style="width: 100%;"></el-date-picker>
 			    </el-col>
-			    <el-col class="line" :span="2">-</el-col>
+			    <el-col class="line" :span="2">---</el-col>
 			    <el-col :span="11">
-			      <el-date-picker type="date" placeholder="选择日期" v-model="sizeForm.date2" style="width: 100%;"></el-date-picker>
+			    	<el-date-picker type="date" placeholder="选择日期" v-model="sizeForm.date2" style="width: 100%;"></el-date-picker>
 			    </el-col>
-			  </el-form-item>
-			  <el-form-item size="large">
+			</el-form-item>
+			<el-form-item size="large">
 			    <el-button type="primary" @click="onSubmit">查询</el-button>
-			  </el-form-item>
-	</el-form>
-	
-	
+			</el-form-item>
+		</el-form>
 	<!---->
 	
 		<el-table :data="tableData" border style="width: 100%">
@@ -114,6 +135,7 @@
 	/*按钮左对齐*/
 	.el-button--large{
 		float: left;
+		margin:10px 0;
 	}
 	/*第二个table的表头高度控制*/
 	.el-table__header-wrapper{
@@ -122,5 +144,17 @@
 	/*表头文字居中*/
 	.cell{
 		text-align: center;
+	}
+	/*修改label的位置*/
+	.el-form-item__label{
+		margin-top:4px;
+	}
+	.el-form-item__label:nth-of-type(6){
+		margin-top:none;
+		color: red;
+	}
+	/*修改行距*/
+	.el-form .el-form-item{
+		margin: 0;
 	}
 </style>
