@@ -123,5 +123,12 @@
 	.el-table__header-wrapper{
 		line-height: 0px;	
 	}
-	
+	/*表格背景*/
+	.el-table{
+		background: none;
+	}
+	/*表格居中*/
+	.el-table__header,.el-table__body{
+		margin: auto;
+	}
 </style>

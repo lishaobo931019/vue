@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<el-form ref="form" :model="sizeForm" label-width="80px" size="mini">
-			<table width="100%">
+			<table id="topTab">
 				<!--第一行-->
 				<tr>
 					<td>
@@ -53,20 +53,30 @@
 			  			</el-form-item>
 					</td>
 				</tr>
+				<!--第四行-->
+				<tr>
+					<td>
+						<el-form-item label="调查时间">
+					    	<el-col :span="11">
+					    		<el-date-picker type="date" placeholder="选择日期" v-model="sizeForm.date1" style="width: 100%;"></el-date-picker>
+					   	 	</el-col>
+					    	<el-col class="line" :span="1">-</el-col>
+					    	<el-col :span="11">
+					    		<el-date-picker type="date" placeholder="选择日期" v-model="sizeForm.date2" style="width: 100%;"></el-date-picker>
+					    	</el-col>
+						</el-form-item>
+					</td>
+				</tr>
+				<!--第五行-->
+				<tr>
+					<td>
+						<el-form-item size="large">
+						    <el-button type="primary" @click="onSubmit">查询</el-button>
+						</el-form-item>
+					</td>
+				</tr>
 			</table>
 			<!---->
-			<el-form-item label="调查时间">
-			    <el-col :span="11">
-			    	<el-date-picker type="date" placeholder="选择日期" v-model="sizeForm.date1" style="width: 100%;"></el-date-picker>
-			    </el-col>
-			    <el-col class="line" :span="2">---</el-col>
-			    <el-col :span="11">
-			    	<el-date-picker type="date" placeholder="选择日期" v-model="sizeForm.date2" style="width: 100%;"></el-date-picker>
-			    </el-col>
-			</el-form-item>
-			<el-form-item size="large">
-			    <el-button type="primary" @click="onSubmit">查询</el-button>
-			</el-form-item>
 		</el-form>
 	<!---->
 	
@@ -156,5 +166,22 @@
 	/*修改行距*/
 	.el-form .el-form-item{
 		margin: 0;
+	}
+	/*表格背景*/
+	.el-table{
+		background: none;
+	}
+	/*表格居中*/
+	.el-table__header,.el-table__body{
+		margin: auto;
+	}
+	/**/
+	#topTab{
+		/*width: 80%;*/
+		margin: auto;
+	}
+	.el-form-item--mini{
+		/*width: 80%;*/
+		margin: auto;
 	}
 </style>
