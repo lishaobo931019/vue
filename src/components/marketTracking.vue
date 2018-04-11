@@ -66,6 +66,11 @@
 					    	</el-col>
 						</el-form-item>
 					</td>
+					<td>
+						<el-form-item label="拜访天数" >
+				  			<el-input></el-input>
+				  		</el-form-item>
+					</td>
 				</tr>
 				<!--第五行-->
 				<tr>
@@ -177,7 +182,7 @@
 	}
 	/**/
 	#topTab{
-		/*width: 80%;*/
+		width: 50%;
 		margin: auto;
 	}
 	.el-form-item--mini{
