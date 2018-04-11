@@ -4,6 +4,8 @@ import HelloWorld from '@/components/HelloWorld'//登录页
 import home from '@/components/Home'//主页
 import marketInformation from '@/components/marketInformation'//市场信息
 import marketTracking from '@/components/marketTracking'//市场跟踪
+import relationship from '@/components/relationship'//关系搜索
+import trackinginformation from '@/components/TrackingInformation'//市场跟踪信息
 
 
 Vue.use(Router)//全局路由
@@ -30,6 +32,16 @@ export default new Router({
       		path:'marketTracking',//市场跟踪
       		name:'marketTracking',
       		component:marketTracking
+      	},
+      	{
+      		path:'relationship',//市场跟踪
+      		name:'relationship',
+      		component:relationship
+      	},
+      	{
+      		path:'trackinginformation',//市场跟踪信息
+      		name:'trackinginformation',
+      		component:trackinginformation
       	}
       ]
     }

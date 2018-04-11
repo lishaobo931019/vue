@@ -18,8 +18,8 @@
 	        <el-menu-item-group>
 	          <el-menu-item index="1-1" @click="toMarketInfo">市场信息汇总</el-menu-item>
 	          <el-menu-item index="1-2" @click="toMarketTarck">市场跟踪</el-menu-item>
-	          <el-menu-item index="1-3">关系搜索</el-menu-item>
-	          <el-menu-item index="1-4">添加市场跟踪信息</el-menu-item>
+	          <el-menu-item index="1-3" @click="toRelationship">关系搜索</el-menu-item>
+	          <el-menu-item index="1-4" @click="toTrackInfo">添加市场跟踪信息</el-menu-item>
 	          <el-menu-item index="1-5">添加新联系人资源</el-menu-item>
 	        </el-menu-item-group>
 	      </el-submenu>
@@ -85,6 +85,18 @@
 	      toMarketTarck:function(){
 	      	this.$router.push({
 	      		path:'/home/marketTracking',
+	      		query:{}
+	      	})
+	      },
+	      toRelationship:function(){
+	      	this.$router.push({
+	      		path:'/home/relationship',
+	      		query:{}
+	      	})
+	      },
+	      toTrackInfo:function(){
+	      	this.$router.push({
+	      		path:'/home/trackinginformation',
 	      		query:{}
 	      	})
 	      }
