@@ -6,6 +6,7 @@ import marketInformation from '@/components/marketInformation'//市场信息
 import marketTracking from '@/components/marketTracking'//市场跟踪
 import relationship from '@/components/relationship'//关系搜索
 import trackinginformation from '@/components/TrackingInformation'//市场跟踪信息
+import addpersoninfomation from '@/components/addPersonInfomation'//添加联系人信息
 
 
 Vue.use(Router)//全局路由
@@ -42,6 +43,11 @@ export default new Router({
       		path:'trackinginformation',//市场跟踪信息
       		name:'trackinginformation',
       		component:trackinginformation
+      	},
+      	{
+      		path:'addpersoninfomation',//添加联系人信息
+      		name:'addpersoninfomation',
+      		component:addpersoninfomation
       	}
       ]
     }

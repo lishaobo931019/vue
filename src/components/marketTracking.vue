@@ -182,7 +182,7 @@
 	}
 	/**/
 	#topTab{
-		width: 50%;
+		/*width: 50%;*/
 		margin: auto;
 	}
 	.el-form-item--mini{

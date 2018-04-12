@@ -73,22 +73,24 @@
 				  		</el-form-item>
 					</td>
 				</tr>
+				
 			</table>
-			<div class="box">
+			
+			<div class="text-box">
 				<!--第五行-->
 				<el-form-item label="任务内容" class="box">
 				    <el-input type="textarea"  v-model="form.desc"></el-input>
 				</el-form-item>
 				<!--第六行-->
-				<el-form-item label="反馈情况">
+				<el-form-item label="反馈情况" class="box">
 					<el-input type="textarea"  v-model="form.desc"></el-input>
 				</el-form-item>
 				<!--第七行-->
-				<el-form-item label="备注">
+				<el-form-item label="备注" class="box">
 					<el-input type="textarea"  v-model="form.desc"></el-input>
 				</el-form-item>
 				
-				<el-form-item label="调查人">
+				<el-form-item label="调查人" class="box">
 				    <el-checkbox-group v-model="form.type">
 				        <el-checkbox label="小王" name="type"></el-checkbox>
 				        <el-checkbox label="小李" name="type"></el-checkbox>
@@ -101,14 +103,18 @@
 				        <el-checkbox label="小啊子" name="type"></el-checkbox>
 					</el-checkbox-group>
 				</el-form-item>
+				
 				<el-form-item label="添加联系人" id="addPerson">
 				    <el-button type="primary" style="float: left;">添加联系人</el-button>
 				</el-form-item>
-			</div>	
+				
+			</div>		
+				
 				<el-form-item>
 				    <el-button type="primary" @click="onSubmit">保存</el-button>
 				    <el-button>取消</el-button>
 				</el-form-item>
+
 		</el-form>
 		<!--添加附件-->
 		<div>
@@ -144,11 +150,7 @@
 </script>
 
 <style>
-	#addmarketrepot{
-		width: 80%;
-		background: pink;
-		margin: auto;
-	}
+	
 	h5{
 		text-align: center;
 		height: 30px;
@@ -157,7 +159,7 @@
 	}
 	/**/
 	#MarketTab{
-		width: 50%;
+		/*width: 50%;*/
 		margin: auto;
 	}
 	/*选择框左对齐*/
@@ -191,17 +193,19 @@
 		margin-left: 0;
 		text-align: left;		
 	}
-	.el-checkbox{
-	}
-	/*textarea高度增加*/
-	.el-form .box .el-form-item--mini textarea{
-		height: 150px;
-	}
 	.el-form-item .el-form-item__label{
 		width:100px!important;
 	}
 	.el-form-item__content{
 		margin-left: 100px!important;
 	}
-
+	/*给textarea写一个宽度*/
+	.box textarea{
+		height: 150px;
+		margin-bottom: 18px;
+	}
+	.text-box{
+		max-width: 826px!important;
+		margin: 0 auto;
+	}
 </style>

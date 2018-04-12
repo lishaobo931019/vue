@@ -20,7 +20,7 @@
 	          <el-menu-item index="1-2" @click="toMarketTarck">市场跟踪</el-menu-item>
 	          <el-menu-item index="1-3" @click="toRelationship">关系搜索</el-menu-item>
 	          <el-menu-item index="1-4" @click="toTrackInfo">添加市场跟踪信息</el-menu-item>
-	          <el-menu-item index="1-5">添加新联系人资源</el-menu-item>
+	          <el-menu-item index="1-5" @click="toAddPersonInfo">添加新联系人资源</el-menu-item>
 	        </el-menu-item-group>
 	      </el-submenu>
 	      
@@ -82,21 +82,27 @@
 	      		query:{}
 	      	})
 	      },
-	      toMarketTarck:function(){
+	      toMarketTarck:function(){//跳转到市场跟踪
 	      	this.$router.push({
 	      		path:'/home/marketTracking',
 	      		query:{}
 	      	})
 	      },
-	      toRelationship:function(){
+	      toRelationship:function(){//跳转到关系搜索
 	      	this.$router.push({
 	      		path:'/home/relationship',
 	      		query:{}
 	      	})
 	      },
-	      toTrackInfo:function(){
+	      toTrackInfo:function(){//跳转到市场跟踪信息
 	      	this.$router.push({
 	      		path:'/home/trackinginformation',
+	      		query:{}
+	      	})
+	      },
+	      toAddPersonInfo:function(){//跳转添加联系人信息
+	      	this.$router.push({
+	      		path:'/home/addPersonInfomation',
 	      		query:{}
 	      	})
 	      }
