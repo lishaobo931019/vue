@@ -30,9 +30,9 @@
 	          <span class="yijibiaoti">合同管理</span>
 	        </template>
 	        <el-menu-item-group>
-	          <el-menu-item index="2-1">合同信息汇总</el-menu-item>
-	          <el-menu-item index="2-2">合同信息列表</el-menu-item>
-	          <el-menu-item index="2-3">添加合同信息</el-menu-item>
+	          <el-menu-item index="2-1" @click="toContractInfo">合同信息汇总</el-menu-item>
+	          <el-menu-item index="2-2" @click="toContractlist">合同信息列表</el-menu-item>
+	          <el-menu-item index="2-3" @click="toAddContractInfo">添加合同信息</el-menu-item>
 	        </el-menu-item-group>
 	      </el-submenu>
 	      
@@ -43,9 +43,9 @@
 	          <span class="yijibiaoti">投招标管理</span>
 	        </template>
 	        <el-menu-item-group>
-	          <el-menu-item index="3-1">投招标信息汇总</el-menu-item>
-	          <el-menu-item index="3-2">投招标信息列表</el-menu-item>
-	          <el-menu-item index="3-3">新建招投标信息</el-menu-item>
+	          <el-menu-item index="3-1" @click="toBiddingInfo">投招标信息汇总</el-menu-item>
+	          <el-menu-item index="3-2" @click="toBiddinglist">投招标信息列表</el-menu-item>
+	          <el-menu-item index="3-3" @click="addBiddingInfo">新建招投标信息</el-menu-item>
 	        </el-menu-item-group>
 	      </el-submenu>
 	      
@@ -56,8 +56,8 @@
 	          <span class="yijibiaoti">系统管理</span>
 	        </template>
 	        <el-menu-item-group>
-	          <el-menu-item index="4-1">用户管理</el-menu-item>
-	          <el-menu-item index="4-2">添加用户</el-menu-item>
+	          <el-menu-item index="4-1" @click="userManagement">用户管理</el-menu-item>
+	          <el-menu-item index="4-2" @click="addUser">添加用户</el-menu-item>
 	        </el-menu-item-group>
 	      </el-submenu>
 	      
@@ -103,6 +103,54 @@
 	      toAddPersonInfo:function(){//跳转添加联系人信息
 	      	this.$router.push({
 	      		path:'/home/addPersonInfomation',
+	      		query:{}
+	      	})
+	      },
+	      toContractInfo:function(){//跳转合同信息汇总
+	      	this.$router.push({
+	      		path:'/home/contractinfo',
+	      		query:{}
+	      	})
+	      },
+	      toContractlist:function(){//跳转合同信息列表
+	      	this.$router.push({
+	      		path:'/home/contractlist',
+	      		query:{}
+	      	})
+	      },
+	      toAddContractInfo:function(){//添加合同
+	      	this.$router.push({
+	      		path:'/home/addcontract',
+	      		query:{}
+	      	})
+	      },
+	       toBiddingInfo:function(){//招投标信息
+	      	this.$router.push({
+	      		path:'/home/BiddingInfo',
+	      		query:{}
+	      	})
+	      },
+	       toBiddinglist:function(){//招投标列表
+	      	this.$router.push({
+	      		path:'/home/Biddinglist',
+	      		query:{}
+	      	})
+	      },
+	       addBiddingInfo:function(){//添加招投标
+	      	this.$router.push({
+	      		path:'/home/addBidding',
+	      		query:{}
+	      	})
+	      },
+	       userManagement:function(){//用户管理
+	      	this.$router.push({
+	      		path:'/home/usermanagement',
+	      		query:{}
+	      	})
+	      },
+	       addUser:function(){//添加用户
+	      	this.$router.push({
+	      		path:'/home/adduser',
 	      		query:{}
 	      	})
 	      }
