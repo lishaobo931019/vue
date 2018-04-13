@@ -102,7 +102,7 @@ export default new Router({
       	{
       		path:'adduser',//添加用户
       		name:'adduser',
-      		component:addcontract
+      		component:adduser
       	}
       ]
     }
