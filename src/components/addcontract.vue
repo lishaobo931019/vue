@@ -224,4 +224,6 @@
 		max-width: 826px!important;
 		margin: 0 auto;
 	}
+	
+	/*左对齐多选框,调整多选框*/
 </style>

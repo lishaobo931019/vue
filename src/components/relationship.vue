@@ -15,14 +15,14 @@
 			</el-form>
 		</div>
 		<!--第二块-->
-		<el-table :data="tableData" border style="width: 100%;margin-top:30px">
-			<el-table-column  prop="Meetperson" label="姓名" width="150" height="30"></el-table-column>
-			<el-table-column  prop="company" label="公司" width="150"></el-table-column>
-			<el-table-column  prop="lururen" label="录入人" width="150"></el-table-column>
-			<el-table-column  prop="zhiwu" label="职务" width="150"></el-table-column>
-			<el-table-column  prop="tel" label="手机号" width="150"></el-table-column>
-			<el-table-column  prop="date" label="录入时间" sortable width="150"></el-table-column>
-			<el-table-column  prop="workimport" label="职位重要度" width="150"></el-table-column>
+		<el-table :data="tableData" border style="max-width: 800px;margin:0 auto;margin-top:30px">
+			<el-table-column  prop="Meetperson" label="姓名" width="100" height="30"></el-table-column>
+			<el-table-column  prop="company" label="公司" width="100"></el-table-column>
+			<el-table-column  prop="lururen" label="录入人" width="100"></el-table-column>
+			<el-table-column  prop="zhiwu" label="职务" width="100"></el-table-column>
+			<el-table-column  prop="tel" label="手机号" width="100"></el-table-column>
+			<el-table-column  prop="date" label="录入时间" sortable width="100"></el-table-column>
+			<el-table-column  prop="workimport" label="职位重要度" width="100"></el-table-column>
 		    <el-table-column  label="操作" width="100">
 		      	<template slot-scope="scope">
 		        	<el-button @click="handleClick(scope.row)" type="text" size="small">查看</el-button>

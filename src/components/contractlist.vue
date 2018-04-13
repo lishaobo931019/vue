@@ -70,7 +70,7 @@
 		</el-form>
 	<!---->
 	
-		<el-table :data="tableData" border style="width: 100%">
+		<el-table :data="tableData" border style="max-width:820px;margin:0 auto">
 			<el-table-column  prop="Meetperson" label="项目编号" width="100" height="30"></el-table-column>
 			<el-table-column  prop="zeren" label="工程名称" width="100"></el-table-column>
 			<el-table-column  prop="worktype" label="合同单位" width="100"></el-table-column>

@@ -85,7 +85,7 @@
 		</el-form>
 	<!---->
 	
-		<el-table :data="tableData" border style="width: 100%">
+		<el-table :data="tableData" border style="max-width: 782px;margin:0 auto">
 			<el-table-column  prop="Meetperson" label="拜访对象" width="150" height="30"></el-table-column>
 			<el-table-column  prop="zeren" label="责任人" width="150"></el-table-column>
 			<el-table-column  prop="date" label="拜访日期" sortable width="150"></el-table-column>

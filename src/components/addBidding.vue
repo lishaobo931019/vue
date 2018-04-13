@@ -64,7 +64,7 @@
 				
 			</table>
 			
-			<div class="text-box">
+			<div class="text-box-addBidding">
 				<!--第五行-->
 				<el-form-item label="备注" class="box">
 				    <el-input type="textarea"  v-model="form.desc"></el-input>
@@ -173,8 +173,8 @@
 		height: 150px;
 		margin-bottom: 18px;
 	}
-	.text-box{
-		max-width: 826px!important;
+	.text-box-addBidding{
+		max-width: 619px!important;
 		margin: 0 auto;
 	}
 </style>
