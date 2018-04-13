@@ -1,8 +1,8 @@
 <template>
-	<div id="">
+	<div id="trackmarketinfo">
 		<h5>添加新的市场跟踪报告</h5>
-		<el-form ref="form" :model="form" label-width="80px" size="mini">
-			<table id="MarketTab">
+		<el-form ref="form" :model="trackform" label-width="80px" size="mini">
+			<table id="trackformTab">
 				<!--第一行-->
 				<tr>
 					<td>
@@ -20,7 +20,7 @@
 				<tr>
 					<td>
 						<el-form-item label="任务类型">
-					    	<el-select v-model="form.region" placeholder="无">
+					    	<el-select v-model="trackform.region" placeholder="无">
 					      		<el-option label="区域一" value="shanghai"></el-option>
 					      		<el-option label="区域二" value="beijing"></el-option>
 					    	</el-select>
@@ -28,7 +28,7 @@
 					</td>
 					<td>
 						<el-form-item label="返回类型">
-				    		<el-select v-model="form.region" placeholder="无">
+				    		<el-select v-model="trackform.region" placeholder="无">
 				      			<el-option label="区域一" value="shanghai"></el-option>
 				      			<el-option label="区域二" value="beijing"></el-option>
 				    		</el-select>
@@ -39,7 +39,7 @@
 				<tr>
 					<td>
 						<el-form-item label="所在地区">
-			    			<el-select v-model="form.region" placeholder="无">
+			    			<el-select v-model="trackform.region" placeholder="无">
 			      				<el-option label="区域一" value="shanghai"></el-option>
 			      				<el-option label="区域二" value="beijing"></el-option>
 			    			</el-select>
@@ -47,7 +47,7 @@
 					</td>
 					<td>
 						<el-form-item label="所在片区">
-			    			<el-select v-model="form.region" placeholder="无">
+			    			<el-select v-model="trackform.region" placeholder="无">
 			      				<el-option label="区域一" value="shanghai"></el-option>
 			      				<el-option label="区域二" value="beijing"></el-option>
 			   				</el-select>
@@ -59,11 +59,11 @@
 					<td>
 						<el-form-item label="调查时间">
 					    	<el-col :span="11">
-					    		<el-date-picker type="date" placeholder="选择日期" v-model="form.date1" style="width: 100%;"></el-date-picker>
+					    		<el-date-picker type="date" placeholder="选择日期" v-model="trackform.date1" style="width: 100%;"></el-date-picker>
 					   	 	</el-col>
 					    	<el-col class="line" :span="1">-</el-col>
 					    	<el-col :span="11">
-					    		<el-date-picker type="date" placeholder="选择日期" v-model="form.date2" style="width: 100%;"></el-date-picker>
+					    		<el-date-picker type="date" placeholder="选择日期" v-model="trackform.date2" style="width: 100%;"></el-date-picker>
 					    	</el-col>
 						</el-form-item>
 					</td>
@@ -79,19 +79,19 @@
 			<div class="text-box">
 				<!--第五行-->
 				<el-form-item label="任务内容" class="box">
-				    <el-input type="textarea"  v-model="form.desc"></el-input>
+				    <el-input type="textarea"  v-model="trackform.desc"></el-input>
 				</el-form-item>
 				<!--第六行-->
 				<el-form-item label="反馈情况" class="box">
-					<el-input type="textarea"  v-model="form.desc"></el-input>
+					<el-input type="textarea"  v-model="trackform.desc"></el-input>
 				</el-form-item>
 				<!--第七行-->
 				<el-form-item label="备注" class="box">
-					<el-input type="textarea"  v-model="form.desc"></el-input>
+					<el-input type="textarea"  v-model="trackform.desc"></el-input>
 				</el-form-item>
 				
 				<el-form-item label="调查人" class="box">
-				    <el-checkbox-group v-model="form.type">
+				    <el-checkbox-group v-model="trackform.type">
 				        <el-checkbox label="小王" name="type"></el-checkbox>
 				        <el-checkbox label="小李" name="type"></el-checkbox>
 				        <el-checkbox label="小猴子" name="type"></el-checkbox>
@@ -129,7 +129,7 @@
 	export default {
 	    data() {
 	      return {
-	        form: {
+	        trackform: {
 	          name: '',
 	          region: '',
 	          date1: '',
@@ -158,7 +158,7 @@
 		width: 100%;
 	}
 	/**/
-	#MarketTab{
+	#trackformTab{
 		/*width: 50%;*/
 		margin: auto;
 	}
@@ -187,24 +187,24 @@
 		
 	}
 	/*左对齐多选框,调整多选框*/
-	.el-form .box .el-checkbox-group label{
+	#trackmarketinfo .el-form .box .el-checkbox-group label{
 		float: left;
 		width: 70px;
 		margin-left: 0;
 		text-align: left;		
 	}
-	.el-form-item .el-form-item__label{
+	#trackmarketinfo .el-form-item .el-form-item__label{
 		width:100px!important;
 	}
-	.el-form-item__content{
+	#trackmarketinfo .el-form-item__content{
 		margin-left: 100px!important;
 	}
 	/*给textarea写一个宽度*/
-	.box textarea{
+	#trackmarketinfo .box textarea{
 		height: 150px;
 		margin-bottom: 18px;
 	}
-	.text-box{
+	#trackmarketinfo .text-box{
 		max-width: 826px!important;
 		margin: 0 auto;
 	}

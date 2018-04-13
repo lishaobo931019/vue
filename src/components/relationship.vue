@@ -2,7 +2,7 @@
 	<div>
 		<h5 class="personlist">联系人信息列表</h5>
 		<div class="diyihang">
-			<el-form :inline="true" :model="formInline" class="demo-form-inline" size="mini">
+			<el-form :inline="true" :model="personform" class="demo-form-inline" size="mini">
 						<el-form-item>
 		    				<el-input  placeholder="姓名"></el-input>
 		   				 </el-form-item>
@@ -15,7 +15,7 @@
 			</el-form>
 		</div>
 		<!--第二块-->
-		<el-table :data="tableData" border style="max-width: 800px;margin:0 auto;margin-top:30px">
+		<el-table :data="PersontableData" border style="max-width: 800px;margin:0 auto;margin-top:30px">
 			<el-table-column  prop="Meetperson" label="姓名" width="100" height="30"></el-table-column>
 			<el-table-column  prop="company" label="公司" width="100"></el-table-column>
 			<el-table-column  prop="lururen" label="录入人" width="100"></el-table-column>
@@ -49,11 +49,11 @@
 	export default {
 	    data() {
 	    	return {
-	        	formInline: {
+	        	personform: {
 	          		user: '',
 	          		region: ''
 	        	},
-	        	tableData: [{
+	        	PersontableData: [{
 		        	Meetperson: '小王',
 		        	company:"百度",
 		        	lururen:"小小黑",

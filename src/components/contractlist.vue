@@ -1,8 +1,8 @@
 <template>
 	<div>
 		<h5 style="height: 10px;line-height: 10px;">合同列表</h5>
-		<el-form ref="form" :model="sizeForm" label-width="80px" size="mini">
-			<table id="topTab">
+		<el-form ref="form" :model="contractlistForm" label-width="80px" size="mini">
+			<table id="contractlistFormtopTab">
 				<!--第一行-->
 				<tr>
 					<td>
@@ -28,7 +28,7 @@
 				<tr>
 					<td>
 						<el-form-item label="所在地区">
-			    			<el-select v-model="sizeForm.region" placeholder="无">
+			    			<el-select v-model="contractlistForm.region" placeholder="无">
 			      				<el-option label="区域一" value="shanghai"></el-option>
 			      				<el-option label="区域二" value="beijing"></el-option>
 			    			</el-select>
@@ -36,7 +36,7 @@
 					</td>
 					<td>
 						<el-form-item label="所在片区">
-			    			<el-select v-model="sizeForm.region" placeholder="无">
+			    			<el-select v-model="contractlistForm.region" placeholder="无">
 			      				<el-option label="区域一" value="shanghai"></el-option>
 			      				<el-option label="区域二" value="beijing"></el-option>
 			   				</el-select>
@@ -46,13 +46,13 @@
 				<!--第四行-->
 				<tr>
 					<td>
-						<el-form-item label="合同签约时间">
+						<el-form-item label="合同签约时间" id="contractDate" >
 					    	<el-col :span="11">
-					    		<el-date-picker type="date" placeholder="选择日期" v-model="sizeForm.date1" style="width: 100%;"></el-date-picker>
+					    		<el-date-picker type="date" placeholder="选择日期" v-model="contractlistForm.date1" style="width: 100%;"></el-date-picker>
 					   	 	</el-col>
 					    	<el-col class="line" :span="1">-</el-col>
 					    	<el-col :span="11">
-					    		<el-date-picker type="date" placeholder="选择日期" v-model="sizeForm.date2" style="width: 100%;"></el-date-picker>
+					    		<el-date-picker type="date" placeholder="选择日期" v-model="contractlistForm.date2" style="width: 100%;"></el-date-picker>
 					    	</el-col>
 						</el-form-item>
 					</td>
@@ -70,7 +70,7 @@
 		</el-form>
 	<!---->
 	
-		<el-table :data="tableData" border style="max-width:820px;margin:0 auto">
+		<el-table :data="contractlistFormtableData" id="contractlistFormtableData" border >
 			<el-table-column  prop="Meetperson" label="项目编号" width="100" height="30"></el-table-column>
 			<el-table-column  prop="zeren" label="工程名称" width="100"></el-table-column>
 			<el-table-column  prop="worktype" label="合同单位" width="100"></el-table-column>
@@ -95,7 +95,7 @@
 	export default {
     data() {
       return {
-        sizeForm: {
+        contractlistForm: {
           name: '拜访对象',
           region: '',
           date1: '',
@@ -105,7 +105,7 @@
           resource: '',
           desc: ''
         },
-        tableData: [{
+        contractlistFormtableData: [{
         	Meetperson: '小王',
           date: '2016-05-03',
         }, {
@@ -130,6 +130,9 @@
 </script>
 
 <style>
+	#contractlistFormtopTab{
+		margin: auto;
+	}
 	/*选择框左对齐*/
 	.el-form-item__content .el-select--mini{
 		float: left;
@@ -168,12 +171,20 @@
 		margin: auto;
 	}
 	/**/
-	#topTab{
-		/*width: 50%;*/
-		margin: auto;
-	}
+	
 	.el-form-item--mini{
 		/*width: 80%;*/
 		margin: auto;
+	}
+	/*给label一个宽度使文字在一行*/
+	#contractlistFormtopTab .el-form-item .el-form-item__label{
+		width:100px!important;
+	}
+	#contractlistFormtopTab .el-form-item__content{
+		margin-left: 100px!important;
+	}
+	#contractlistFormtableData{
+		max-width: 820px;
+		margin: 0 auto;
 	}
 </style>

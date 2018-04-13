@@ -1,8 +1,8 @@
 <template>
-	<div id="">
+	<div id="addBiddingMarket">
 		<h5>添加招投标管理信息</h5>
-		<el-form ref="form" :model="form" label-width="80px" size="mini">
-			<table id="MarketTab">
+		<el-form ref="form" :model="addBiddingform" label-width="80px" size="mini">
+			<table id="addBiddingMarketTab">
 				<!--第一行-->
 				<tr>
 					<td>
@@ -28,12 +28,12 @@
 				<tr>
 					<td>
 						<el-form-item label="招标时间">
-				  			<el-date-picker type="date" placeholder="选择日期" v-model="form.date1" ></el-date-picker>
+				  			<el-date-picker type="date" placeholder="选择日期" v-model="addBiddingform.date1" ></el-date-picker>
 				  		</el-form-item>
 					</td>
 					<td>
 						<el-form-item label="审核状态" >
-				  			<el-select v-model="form.region" placeholder="无">
+				  			<el-select v-model="addBiddingform.region" placeholder="无">
 			      				<el-option label="区域一" value="shanghai"></el-option>
 			      				<el-option label="区域二" value="beijing"></el-option>
 			    			</el-select>
@@ -45,7 +45,7 @@
 				<tr>
 					<td>
 						<el-form-item label="所在地区">
-			    			<el-select v-model="form.region" placeholder="无">
+			    			<el-select v-model="addBiddingform.region" placeholder="无">
 			      				<el-option label="区域一" value="shanghai"></el-option>
 			      				<el-option label="区域二" value="beijing"></el-option>
 			    			</el-select>
@@ -53,7 +53,7 @@
 					</td>
 					<td>
 						<el-form-item label="所在片区">
-			    			<el-select v-model="form.region" placeholder="无">
+			    			<el-select v-model="addBiddingform.region" placeholder="无">
 			      				<el-option label="区域一" value="shanghai"></el-option>
 			      				<el-option label="区域二" value="beijing"></el-option>
 			   				</el-select>
@@ -67,11 +67,11 @@
 			<div class="text-box-addBidding">
 				<!--第五行-->
 				<el-form-item label="备注" class="box">
-				    <el-input type="textarea"  v-model="form.desc"></el-input>
+				    <el-input type="textarea"  v-model="addBiddingform.desc"></el-input>
 				</el-form-item>
 				<!--第七行-->
 				<el-form-item label="招标总结" class="box">
-					<el-input type="textarea"  v-model="form.desc"></el-input>
+					<el-input type="textarea"  v-model="addBiddingform.desc"></el-input>
 				</el-form-item>
 				
 				<el-form-item label="包号清单" id="addPerson">
@@ -98,7 +98,7 @@
 	export default {
 	    data() {
 	      return {
-	        form: {
+	        addBiddingform: {
 	          name: '',
 	          region: '',
 	          date1: '',
@@ -127,7 +127,7 @@
 		width: 100%;
 	}
 	/**/
-	#MarketTab{
+	#addBiddingMarketTab{
 		/*width: 50%;*/
 		margin: auto;
 	}
@@ -149,32 +149,35 @@
 	}
 	/**/
 	/*area框设置*/
-	.el-form .box .el-form-item--mini{
+	#addBiddingMarket .el-form .box .el-form-item--mini{
 		width: 50%;
 		margin: auto;
 		margin:30px auto;
 		
 	}
 	/*左对齐多选框,调整多选框*/
-	.el-form .box .el-checkbox-group label{
+	#addBiddingMarket .el-form .box .el-checkbox-group label{
 		float: left;
 		width: 70px;
 		margin-left: 0;
 		text-align: left;		
 	}
-	.el-form-item .el-form-item__label{
+	#addBiddingMarket .el-form-item .el-form-item__label{
 		width:100px!important;
 	}
-	.el-form-item__content{
+	#addBiddingMarket .el-form-item__content{
 		margin-left: 100px!important;
 	}
 	/*给textarea写一个宽度*/
-	.box textarea{
+	#addBiddingMarket .box textarea{
 		height: 150px;
 		margin-bottom: 18px;
 	}
-	.text-box-addBidding{
-		max-width: 619px!important;
+	#addBiddingMarket .text-box-addBidding{
+		max-width: 646px!important;
 		margin: 0 auto;
+	}
+	#addBiddingMarket .el-select--mini{
+		width:220px
 	}
 </style>

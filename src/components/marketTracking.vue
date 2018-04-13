@@ -1,7 +1,7 @@
 <template>
 	<div>
-		<el-form ref="form" :model="sizeForm" label-width="80px" size="mini">
-			<table id="topTab">
+		<el-form ref="form" :model="marketForm" label-width="80px" size="mini">
+			<table id="marketFormtopTab">
 				<!--第一行-->
 				<tr>
 					<td>
@@ -19,7 +19,7 @@
 				<tr>
 					<td>
 						<el-form-item label="任务类型">
-					    	<el-select v-model="sizeForm.region" placeholder="无">
+					    	<el-select v-model="marketForm.region" placeholder="无">
 					      		<el-option label="区域一" value="shanghai"></el-option>
 					      		<el-option label="区域二" value="beijing"></el-option>
 					    	</el-select>
@@ -27,7 +27,7 @@
 					</td>
 					<td>
 						<el-form-item label="返回类型">
-				    		<el-select v-model="sizeForm.region" placeholder="无">
+				    		<el-select v-model="marketForm.region" placeholder="无">
 				      			<el-option label="区域一" value="shanghai"></el-option>
 				      			<el-option label="区域二" value="beijing"></el-option>
 				    		</el-select>
@@ -38,7 +38,7 @@
 				<tr>
 					<td>
 						<el-form-item label="所在地区">
-			    			<el-select v-model="sizeForm.region" placeholder="无">
+			    			<el-select v-model="marketForm.region" placeholder="无">
 			      				<el-option label="区域一" value="shanghai"></el-option>
 			      				<el-option label="区域二" value="beijing"></el-option>
 			    			</el-select>
@@ -46,7 +46,7 @@
 					</td>
 					<td>
 						<el-form-item label="所在片区">
-			    			<el-select v-model="sizeForm.region" placeholder="无">
+			    			<el-select v-model="marketForm.region" placeholder="无">
 			      				<el-option label="区域一" value="shanghai"></el-option>
 			      				<el-option label="区域二" value="beijing"></el-option>
 			   				</el-select>
@@ -58,11 +58,11 @@
 					<td>
 						<el-form-item label="调查时间">
 					    	<el-col :span="11">
-					    		<el-date-picker type="date" placeholder="选择日期" v-model="sizeForm.date1" style="width: 100%;"></el-date-picker>
+					    		<el-date-picker type="date" placeholder="选择日期" v-model="marketForm.date1" style="width: 100%;"></el-date-picker>
 					   	 	</el-col>
 					    	<el-col class="line" :span="1">-</el-col>
 					    	<el-col :span="11">
-					    		<el-date-picker type="date" placeholder="选择日期" v-model="sizeForm.date2" style="width: 100%;"></el-date-picker>
+					    		<el-date-picker type="date" placeholder="选择日期" v-model="marketForm.date2" style="width: 100%;"></el-date-picker>
 					    	</el-col>
 						</el-form-item>
 					</td>
@@ -85,7 +85,7 @@
 		</el-form>
 	<!---->
 	
-		<el-table :data="tableData" border style="max-width: 782px;margin:0 auto">
+		<el-table :data="markettableData" id="markettableData" border >
 			<el-table-column  prop="Meetperson" label="拜访对象" width="150" height="30"></el-table-column>
 			<el-table-column  prop="zeren" label="责任人" width="150"></el-table-column>
 			<el-table-column  prop="date" label="拜访日期" sortable width="150"></el-table-column>
@@ -108,7 +108,7 @@
 	export default {
     data() {
       return {
-        sizeForm: {
+        marketForm: {
           name: '拜访对象',
           region: '',
           date1: '',
@@ -118,7 +118,7 @@
           resource: '',
           desc: ''
         },
-        tableData: [{
+        markettableData: [{
         	Meetperson: '小王',
           date: '2016-05-03',
         }, {
@@ -166,7 +166,6 @@
 	}
 	.el-form-item__label:nth-of-type(6){
 		margin-top:none;
-		color: red;
 	}
 	/*修改行距*/
 	.el-form .el-form-item{
@@ -181,12 +180,19 @@
 		margin: auto;
 	}
 	/**/
-	#topTab{
-		/*width: 50%;*/
+	#marketFormtopTab{
+		/*max-width: 786px;*/
 		margin: auto;
 	}
 	.el-form-item--mini{
 		/*width: 80%;*/
 		margin: auto;
 	}
+	
+	#markettableData{
+		max-width: 782px;
+		margin: 0 auto;
+	}
+	
+	
 </style>

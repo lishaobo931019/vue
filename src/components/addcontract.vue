@@ -1,8 +1,8 @@
 <template>
-	<div id="">
+	<div id="addcontract">
 		<h5>添加合同</h5>
-		<el-form ref="form" :model="form" label-width="80px" size="mini">
-			<table id="MarketTab">
+		<el-form ref="form" :model="addcontractform" label-width="80px" size="mini">
+			<table id="addcontractTab">
 				<!--第一行-->
 				<tr>
 					<td>
@@ -25,7 +25,7 @@
 					</td>
 					<td>
 						<el-form-item label="质保金退回时间">
-				  			<el-date-picker type="date" placeholder="选择日期" v-model="form.date1" ></el-date-picker>
+				  			<el-date-picker type="date" placeholder="选择日期" v-model="addcontractform.date1" ></el-date-picker>
 				  		</el-form-item>
 					</td>
 				</tr>
@@ -65,7 +65,7 @@
 					<td>
 						<el-form-item label="合同签订时间">
 					    	<el-col :span="11">
-					    		<el-date-picker type="date" placeholder="选择日期" v-model="form.date1" ></el-date-picker>
+					    		<el-date-picker type="date" placeholder="选择日期" v-model="addcontractform.date1" ></el-date-picker>
 					   	 	</el-col>
 				  		</el-form-item>
 					</td>
@@ -76,7 +76,7 @@
 				<tr>
 					<td>
 						<el-form-item label="所在地区">
-			    			<el-select v-model="form.region" placeholder="无">
+			    			<el-select v-model="addcontractform.region" placeholder="无">
 			      				<el-option label="区域一" value="shanghai"></el-option>
 			      				<el-option label="区域二" value="beijing"></el-option>
 			    			</el-select>
@@ -84,7 +84,7 @@
 					</td>
 					<td>
 						<el-form-item label="所在片区">
-			    			<el-select v-model="form.region" placeholder="无">
+			    			<el-select v-model="addcontractform.region" placeholder="无">
 			      				<el-option label="区域一" value="shanghai"></el-option>
 			      				<el-option label="区域二" value="beijing"></el-option>
 			   				</el-select>
@@ -95,7 +95,7 @@
 				<tr>
 					<td>
 						<el-form-item label="发票类型">
-					    	<el-select v-model="form.region" placeholder="无">
+					    	<el-select v-model="addcontractform.region" placeholder="无">
 			      				<el-option label="区域一" value="shanghai"></el-option>
 			      				<el-option label="区域二" value="beijing"></el-option>
 			   				</el-select>
@@ -109,11 +109,11 @@
 			<div class="text-box">
 				<!--第五行-->
 				<el-form-item label="开票备注" class="box">
-				    <el-input type="textarea"  v-model="form.desc"></el-input>
+				    <el-input type="textarea"  v-model="addcontractform.desc"></el-input>
 				</el-form-item>
 				<!--第七行-->
 				<el-form-item label="备注" class="box">
-					<el-input type="textarea"  v-model="form.desc"></el-input>
+					<el-input type="textarea"  v-model="addcontractform.desc"></el-input>
 				</el-form-item>
 				
 				
@@ -145,7 +145,7 @@
 	export default {
 	    data() {
 	      return {
-	        form: {
+	        addcontractform: {
 	          name: '',
 	          region: '',
 	          date1: '',
@@ -174,7 +174,7 @@
 		width: 100%;
 	}
 	/**/
-	#MarketTab{
+	#addcontractTab{
 		/*width: 50%;*/
 		margin: auto;
 	}
@@ -196,34 +196,35 @@
 	}
 	/**/
 	/*area框设置*/
-	.el-form .box .el-form-item--mini{
+	#addcontract .el-form .box .el-form-item--mini{
 		width: 50%;
 		margin: auto;
 		margin:30px auto;
 		
 	}
 	/*左对齐多选框,调整多选框*/
-	.el-form .box .el-checkbox-group label{
+	#addcontract .el-form .box .el-checkbox-group label{
 		float: left;
 		width: 70px;
 		margin-left: 0;
 		text-align: left;		
 	}
-	.el-form-item .el-form-item__label{
-		width:100px!important;
+	#addcontract .el-form-item .el-form-item__label{
+		width:130px!important;
 	}
-	.el-form-item__content{
-		margin-left: 100px!important;
+	#addcontract .el-form-item__content{
+		margin-left: 130px!important;
 	}
 	/*给textarea写一个宽度*/
-	.box textarea{
+	#addcontract .box textarea{
 		height: 150px;
 		margin-bottom: 18px;
 	}
-	.text-box{
-		max-width: 826px!important;
+	#addcontract .text-box{
+		max-width: 683px!important;
 		margin: 0 auto;
 	}
 	
-	/*左对齐多选框,调整多选框*/
+	/*调整label宽度，使其文字在一行*/
+	
 </style>

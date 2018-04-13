@@ -1,8 +1,8 @@
 <template>
-	<div id="">
+	<div id="addPersonInfo">
 		<h5>添加相关联系人信息</h5>
 		<el-form ref="addPersonInfoform" :model="addPersonInfoform" label-width="80px" size="mini">
-			<table id="MarketTab">
+			<table id="addPersonInfoTab">
 				<!--第一行-->
 				<tr>
 					<td>
@@ -116,8 +116,7 @@
 		width: 100%;
 	}
 	/**/
-	#MarketTab{
-		/*width: 50%;*/
+	#addPersonInfoTab{
 		margin: auto;
 	}
 	/*选择框左对齐*/
@@ -144,18 +143,18 @@
 		margin-left: 0;
 		text-align: left;		
 	}
-	.el-form-item .el-form-item__label{
+	#addPersonInfo .el-form-item .el-form-item__label{
 		width:100px!important;
 	}
-	.el-form-item__content{
+	#addPersonInfo .el-form-item__content{
 		margin-left: 100px!important;
 	}
 	/*给textarea写一个宽度*/
-	.box textarea{
+	#addPersonInfo .box textarea{
 		height: 150px;
 		margin-bottom: 18px;
 	}
-	.text-ADDPersonInformationbox{
+	#addPersonInfo .text-ADDPersonInformationbox{
 		max-width: 594px!important;
 		margin: 0 auto;
 	}
