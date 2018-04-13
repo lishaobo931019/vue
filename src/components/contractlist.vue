@@ -184,7 +184,7 @@
 		margin-left: 100px!important;
 	}
 	#contractlistFormtableData{
-		max-width: 820px;
+		max-width: 1101px;
 		margin: 0 auto;
 	}
 </style>

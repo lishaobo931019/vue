@@ -221,10 +221,12 @@
 		margin-bottom: 18px;
 	}
 	#addcontract .text-box{
-		max-width: 683px!important;
+		max-width: 706px!important;
 		margin: 0 auto;
 	}
 	
 	/*调整label宽度，使其文字在一行*/
-	
+	#addcontract .el-input__inner{
+		width: 220px;
+	}
 </style>

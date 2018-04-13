@@ -190,7 +190,7 @@
 	}
 	
 	#markettableData{
-		max-width: 782px;
+		max-width: 1106px;
 		margin: 0 auto;
 	}
 	
