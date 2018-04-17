@@ -9,29 +9,47 @@
 	var echarts = require('echarts');//引入echarts
 	export default{
 		name:'marketInformation',
-		mounted() {//在mounted()钩子方法中初始化echarts并绘制图表
+		created(){
+			this.$http.lalala().then(function(res){//调用接口
+//				console.log(res)
+			})
+		},
+		mounted() {
+			//在mounted()钩子方法中初始化echarts并绘制图表
 			// 基于准备好的dom，初始化echarts实例
 			var myChart = echarts.init(document.getElementById('echartContainer'));
 			// 绘制图表
 	            var option = {
 	            title: {
-	                text: 'ECharts 入门示例'
+	                text: '月度出访次数'
 	            },
 	            tooltip: {},
 	            legend: {
-	                data:['销量']
+	                data:['出访次数']
 	            },
 	            xAxis: {
-	                data: ["衬衫","羊毛衫","雪纺衫","裤子","高跟鞋","袜子"]
+	                data:[]
 	            },
 	            yAxis: {},
 	            series: [{
-	                name: '销量',
+	                name: '出访次数',
 	                type: 'bar',
-	                data: [5, 20, 36, 10, 10, 20]
+	                data: []
 	            }]
 	        };
-			myChart.setOption(option);
+	        
+	        //异步加载数据
+	        this.$http.lalala().then(function(res){//调用接口
+	        	console.log(res)
+		        myChart.setOption({
+					xAxis:{
+						data:res.data.month
+					},
+					series:{
+						data:res.data.data
+					}
+				})
+	        })
 		}
 	}
 </script>

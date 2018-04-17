@@ -3,11 +3,15 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import $http from './urlPath.js'
 
 
 //引入element-ui组件
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
+
+//全局加载urlPath
+Object.defineProperty(Vue.prototype, '$http', {value: $http})
 
 
 //全局加载ui组件
