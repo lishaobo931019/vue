@@ -12,7 +12,7 @@
     
     
 	export default{
-		lalala(){
+		MonthVisit(){
 			return axios.get('/market/chart/month.json')//月度出访次数
 		}
 	}
