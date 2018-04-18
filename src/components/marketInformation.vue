@@ -137,12 +137,14 @@
 			//月度表格
 			monthContainer.setOption({
 			    title: {
-			        text: '月度出访次数'
+			        text: '月度出访次数',
+			        x:'center',
 			    },
 			    color: ['#4cabce'],
 			    tooltip: {},
 			    legend: {
-			        data:['出访次数']
+			        data:['出访次数'],
+			         y:'bottom',
 			    },
 			    xAxis: {
 			        data: []
