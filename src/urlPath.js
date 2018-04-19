@@ -35,7 +35,7 @@
 			return axios.get('/contract/chart/paid.json')//合同付款情况
 		},
 		workprogress(){
-			return axios.get('/contract/chart/progress.json')//各地工作进度
+			return axios.get('/contract/chart/work/region.json')//各地工作进度
 		},
 		Productincome(){
 			return axios.get('/contract/chart/product.json')//各产品收入
