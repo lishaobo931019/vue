@@ -13,6 +13,9 @@
     
     
 	export default{
+		//
+		//
+		//**下面是一些echarts的接口**/
 		MonthVisit(){
 			return axios.get('/market/chart/month.json')//月度出访次数
 		},
@@ -24,5 +27,32 @@
 		},
 		pianquVisit(){
 			return axios.get('/market/chart/region.json')//片区出访比例
+		},
+		Contractincome(){
+			return axios.get('/contract/chart/income.json')//合同收入情况
+		},
+		Contractpayment(){
+			return axios.get('/contract/chart/paid.json')//合同付款情况
+		},
+		workprogress(){
+			return axios.get('/contract/chart/progress.json')//各地工作进度
+		},
+		Productincome(){
+			return axios.get('/contract/chart/product.json')//各产品收入
+		},
+		diquincome(){
+			return axios.get('/contract/chart/area.json')//地区收入比例
+		},
+		fenquincome(){
+			return axios.get('/contract/chart/region.json')//分区收入比例
+		},
+		yearWarrantygold(){
+			return axios.get('/contract/chart/deposit/year.json')//年度质保金情况
+		},
+		Warrantygoldreturn(){
+			return axios.get('/contract/chart/deposit/back.json')//质保金回款情况
 		}
+		/***********/
+		//
+		//
 	}
