@@ -15,21 +15,21 @@
 </template>
 
 <script>
-	var echarts = require('echarts');//引入echarts
+//	var echarts = require('echarts');//单页面引入echarts
 	export default{
 		data(){
 			return{
 			}
 		},
 		mounted() {
-			var Contractincome     = echarts.init(document.getElementById('Contractincome'));//合同收入情况
-			var Contractpayment    = echarts.init(document.getElementById('Contractpayment'));//合同付款情况
-			var workprogress       = echarts.init(document.getElementById('workprogress'));//各地工作进度
-			var Productincome      = echarts.init(document.getElementById('Productincome'));//各产品收入
-			var diquincome         = echarts.init(document.getElementById('diquincome'));//地区收入比例
-			var fenquincome        = echarts.init(document.getElementById('fenquincome'));//分区收入比例
-			var yearWarrantygold   = echarts.init(document.getElementById('yearWarrantygold'));//年度质保金情况
-			var Warrantygoldreturn = echarts.init(document.getElementById('Warrantygoldreturn'));//质保金回款情况
+			var Contractincome     = this.echarts.init(document.getElementById('Contractincome'));//合同收入情况
+			var Contractpayment    = this.echarts.init(document.getElementById('Contractpayment'));//合同付款情况
+			var workprogress       = this.echarts.init(document.getElementById('workprogress'));//各地工作进度
+			var Productincome      = this.echarts.init(document.getElementById('Productincome'));//各产品收入
+			var diquincome         = this.echarts.init(document.getElementById('diquincome'));//地区收入比例
+			var fenquincome        = this.echarts.init(document.getElementById('fenquincome'));//分区收入比例
+			var yearWarrantygold   = this.echarts.init(document.getElementById('yearWarrantygold'));//年度质保金情况
+			var Warrantygoldreturn = this.echarts.init(document.getElementById('Warrantygoldreturn'));//质保金回款情况
 			
 			
 			
@@ -723,6 +723,6 @@
 	#Contractincome,#Contractpayment,#workprogress,#Productincome,#diquincome,#fenquincome,#yearWarrantygold,#Warrantygoldreturn{
 		margin: 20px;
 		display: inline-block;
-		border:1px solid red;
+		/*border:1px solid red;*/
 	}
 </style>

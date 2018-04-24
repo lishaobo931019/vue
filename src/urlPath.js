@@ -51,7 +51,16 @@
 		},
 		Warrantygoldreturn(){
 			return axios.get('/contract/chart/deposit/back.json')//质保金回款情况
-		}
+		},
+		biddingNum(){
+			return axios.get('/bid/chart/file/amount.json')//中标的数量
+		},
+		biddingMoney(){
+			return axios.get('/bid/chart/total/prices.json')//中标的金额
+		},
+		biddingProportion(){
+			return axios.get('bid/chart/win/weight.json')//中标的占比情况
+		}		
 		/***********/
 		//
 		//

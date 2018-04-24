@@ -11,7 +11,7 @@
 </template>
 
 <script>
-	var echarts = require('echarts');//引入echarts
+//	var echarts = require('echarts');//单页面引入echarts
 	export default{
 		name:'marketInformation',
 		data(){
@@ -19,10 +19,11 @@
 			}
 		},
 		mounted() {
-			var seaseonContainer = echarts.init(document.getElementById('seaseonContainer'));//季度
-			var monthContainer = echarts.init(document.getElementById('monthContainer'));//月度
-			var diquContainer = echarts.init(document.getElementById('diquContainer'));//地区
-			var pianquContainer = echarts.init(document.getElementById('pianquContainer'));//片区
+			//this.echarts 是全局接收echarts直接使用
+			var seaseonContainer = this.echarts.init(document.getElementById('seaseonContainer'));//季度
+			var monthContainer = this.echarts.init(document.getElementById('monthContainer'));//月度
+			var diquContainer = this.echarts.init(document.getElementById('diquContainer'));//地区
+			var pianquContainer = this.echarts.init(document.getElementById('pianquContainer'));//片区
 			
 			
 			
@@ -179,7 +180,7 @@
 		                x:'center',
 		                text: '地区出访比例'
 		            },
-		             color: ['#003366', '#006699', '#4cabce'],//背景颜色
+//		             color: ['#003366', '#006699', '#4cabce'],//背景颜色
 		            legend: {
 		                y:'bottom',
 		                data:[],
@@ -241,7 +242,7 @@
 	                x:'center',
 	                text: '片区出访比例'
 	            },
-	             color: ['#4cabce', '#4cacaa'],//背景颜色
+//	             color: ['#4cabce', '#4cacaa'],//背景颜色
 	            legend: {
 	                y:'bottom',
 	                data:[],

@@ -16,7 +16,7 @@ Object.defineProperty(Vue.prototype, '$http', {value: $http})
 
 
 //全局加载echarts
-Object.defineProperty(Vue.prototype, '$echarts', {value: echarts})
+Object.defineProperty(Vue.prototype, 'echarts', {value: echarts})
 
 //全局加载ui组件
 Vue.use(ElementUI);
