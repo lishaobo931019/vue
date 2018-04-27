@@ -5,7 +5,7 @@ import App from './App'
 import router from './router'
 import $http from './urlPath.js'
 import echarts from 'echarts'
-
+import 'babel-polyfill'//兼容IE
 
 //引入element-ui组件
 import ElementUI from 'element-ui';

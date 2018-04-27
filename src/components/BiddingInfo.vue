@@ -283,6 +283,6 @@
 		margin: 20px;
 		display: inline-block;
 		/*float: left;*/
-		/*border:1px solid red;*/
+/*		border:1px solid red;*/
 	}
 </style>
