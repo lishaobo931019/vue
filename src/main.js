@@ -7,6 +7,9 @@ import $http from './urlPath.js'
 import echarts from 'echarts'
 import 'babel-polyfill'//兼容IE
 
+
+import NumConvertUtil from './NumConvertUtil'//过滤器
+
 //引入element-ui组件
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
@@ -17,6 +20,9 @@ Object.defineProperty(Vue.prototype, '$http', {value: $http})
 
 //全局加载echarts
 Object.defineProperty(Vue.prototype, 'echarts', {value: echarts})
+
+//全局加载NumConvertUtil
+Object.defineProperty(Vue.prototype, 'NumConvertUtil', {value: NumConvertUtil})
 
 //全局加载ui组件
 Vue.use(ElementUI);

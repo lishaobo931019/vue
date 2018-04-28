@@ -33,7 +33,7 @@
 			
 			
 			
-			
+			let that = this;
 			
 			
 				//合同收入情况
@@ -73,7 +73,10 @@
 	                                    position:'top',
 	                                    textStyle:{
 	                                        fontFamily : '微软雅黑',
-	                                    }
+	                                    },
+	                                    formatter:function(data){
+                                        return that.NumConvertUtil.getNumConvertMoney(data.value);
+                                   		 }
 	                                }
 	                            }
 	                        },
@@ -89,7 +92,10 @@
 	                                    position:'top',
 	                                    textStyle:{
 	                                        fontFamily : '微软雅黑',
-	                                    }
+	                                    },
+	                                    formatter:function(data){
+                                        return that.NumConvertUtil.getNumConvertMoney(data.value);
+                                   		 }
 	                                }
 	                            }
 	                        },
@@ -105,7 +111,10 @@
 	                                    position:'top',
 	                                    textStyle:{
 	                                        fontFamily : '微软雅黑',
-	                                    }
+	                                    },
+	                                     formatter:function(data){
+                                        return that.NumConvertUtil.getNumConvertMoney(data.value);
+                                   		 }
 	                                }
 	                            }
 	                        },
@@ -121,7 +130,10 @@
 	                                    position:'top',
 	                                    textStyle:{
 	                                        fontFamily : '微软雅黑',
-	                                    }
+	                                    },
+	                                    formatter:function(data){
+                                        return that.NumConvertUtil.getNumConvertMoney(data.value);
+                                   		 }
 	                                }
 	                            }
 	                        },
@@ -204,6 +216,9 @@
 	                                        fontSize: '15',
 	                                        fontFamily: '微软雅黑',
 	                                    },
+	                                    formatter:function(data){
+                                        return that.NumConvertUtil.getNumConvertMoney(data.value);
+                                   		 }
 	                                }
 	                            }
 	                        },
@@ -221,6 +236,9 @@
 	                                        fontSize: '15',
 	                                        fontFamily: '微软雅黑',
 	                                    },
+	                                    formatter:function(data){
+                                        return that.NumConvertUtil.getNumConvertMoney(data.value);
+                                   		 }
 	                                }
 	                            }
 	                        },
@@ -239,6 +257,9 @@
 	                                        fontSize: '15',
 	                                        fontFamily: '微软雅黑',
 	                                    },
+	                                    formatter:function(data){
+                                        return that.NumConvertUtil.getNumConvertMoney(data.value);
+                                   		 }
 	                                }
 	                            }
 	                        },
@@ -286,6 +307,7 @@
                     x: 'center',
                     text: '各地区的工作进度'
                 },
+                tooltip: {},//此属性鼠标移动上面会显示数据。很好。
                 grid:{
 	                    left:55
 	                },
@@ -315,8 +337,14 @@
                         type: 'bar',
                         itemStyle: {
                             normal: {
-                                color: 'rgba(181,195,52,1)',
-                                label: {show: true, textStyle: {color: '#27727B'}}
+                                color: 'rgba(0,0,0,1)',
+                                label: {
+                                	show: true, 
+                                	textStyle: {color: '#fff'},
+                                	formatter:function(data){
+                                        return that.NumConvertUtil.getNumConvertMoney(data.value);
+                                   	}
+                                }
                             }
                         },
                         data: [0, 0, 0]
@@ -325,7 +353,16 @@
                         name: '总的数量',
                         type: 'bar',
                         xAxisIndex: 1,
-                        itemStyle: {normal: {color: 'rgba(181,195,52,0.5)', label: {show: true}}},
+                        itemStyle: {
+                        	normal: {
+                        		color: 'rgba(0,0,0,0.5)',
+                        		label: {show: true,
+                        		formatter:function(data){
+                                        return that.NumConvertUtil.getNumConvertMoney(data.value);
+                                   }
+                        		}
+                        	}
+                        },
                         data: [0, 0, 0]
                     },
                 ]
