@@ -47,7 +47,11 @@
                     left:80
                 	},
 	                color: ['#003366', '#006699', '#4cabce', '#4cacaa'],//柱形图的背景颜色
-	                tooltip: {},//此属性鼠标移动上面会显示数据。很好。
+	                tooltip: {
+	                	formatter:function(data){
+                        	return that.NumConvertUtil.getNumConvertMoney(data.value);
+                   		}
+	                },//此属性鼠标移动上面会显示数据。很好。
 	                legend: {
 	                    y:'bottom',
 	                    data:['第一季度','第二季度','第三季度','第四季度'],
@@ -185,7 +189,11 @@
 	                    x: 'center',
 	                    text: '合同的收入情况'
 	                },
-	                tooltip: {},//此属性鼠标移动上面会显示数据。很好。
+	                tooltip: {
+	                	formatter:function(data){
+                        	return that.NumConvertUtil.getNumConvertMoney(data.value);
+                    	}
+	                },//此属性鼠标移动上面会显示数据。很好。
 	                legend: {
 	                    y: 'bottom',
 	                    data: ['已付款','合同已经签订收入', '合同承揽收入'],
@@ -307,7 +315,11 @@
                     x: 'center',
                     text: '各地区的工作进度'
                 },
-                tooltip: {},//此属性鼠标移动上面会显示数据。很好。
+                tooltip: {
+                	formatter:function(data){
+                        return that.NumConvertUtil.getNumConvertMoney(data.value);
+                    }
+                },//此属性鼠标移动上面会显示数据。很好。
                 grid:{
 	                    left:55
 	                },
@@ -340,7 +352,8 @@
                                 color: 'rgba(0,0,0,1)',
                                 label: {
                                 	show: true, 
-                                	textStyle: {color: '#fff'},
+                                	position: 'top',
+                                	textStyle: {color: '#000'},
                                 	formatter:function(data){
                                         return that.NumConvertUtil.getNumConvertMoney(data.value);
                                    	}
@@ -357,6 +370,8 @@
                         	normal: {
                         		color: 'rgba(0,0,0,0.5)',
                         		label: {show: true,
+                        		position: 'top',
+                        		textStyle: {color: '#000'},
                         		formatter:function(data){
                                         return that.NumConvertUtil.getNumConvertMoney(data.value);
                                    }
