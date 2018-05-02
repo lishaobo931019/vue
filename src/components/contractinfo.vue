@@ -580,7 +580,7 @@
 		            {
 		                name: '本年度片区已签订的合同收入',
 		                type: 'pie',
-		                radius: ['20%', '36%'],
+		                radius: ['33%', '25%'],
 		                legendHoverLink: false, //关闭点击时的高亮
 		                hoverAnimation: false,//关闭放大动画
 		                label: {
@@ -600,7 +600,7 @@
 //		                                return data.name+":" +data.value +"("+(data.percent)+"%)";
 //		                            }
 		                             formatter:function(data){
-                                        return that.NumConvertUtil.getNumConvertMoney(data.value)+"("+(data.percent)+"%)";
+                                        return data.name+":"+that.NumConvertUtil.getNumConvertMoney(data.value)+"("+(data.percent)+"%)";
                                    }
 		                            
 		                        },
