@@ -451,9 +451,12 @@
                             normal: {
                                 label: {
                                     show: true,
+//                                  formatter:function(data){
+//                                      return data.name+":" +data.value+"("+(data.percent)+"%)";
+//                                  }
                                     formatter:function(data){
-                                        return data.name+":" +data.value+"("+(data.percent)+"%)";
-                                    }
+                                        return that.NumConvertUtil.getNumConvertMoney(data.value)+"("+(data.percent)+"%)";
+                                   }
                                 },
                                 labelLine: {show: true}
                             }
@@ -492,6 +495,11 @@
 		            x: 'center',
 		            text: '本年度地区已签订的合同收入'
 		        },
+		        tooltip: {
+                	formatter:function(data){
+                        return data.name+":" +that.NumConvertUtil.getNumConvertMoney(data.value)+"("+(data.percent)+"%)";
+                	}
+               	},
 		        legend: {
 		            y: 'bottom',
 		            data: [],
@@ -559,6 +567,11 @@
 		            x: 'center',
 		            text: '本年度片区已签订的合同收入'
 		        },
+		          tooltip: {
+                	formatter:function(data){
+                        return data.name+":" +that.NumConvertUtil.getNumConvertMoney(data.value)+"("+(data.percent)+"%)";
+                    }
+                },//此属性鼠标移动上面会显示数据。很好。
 		        legend: {
 		            y: 'bottom',
 		            data: [],
@@ -583,10 +596,13 @@
 		                    normal: {
 		                        label: {
 		                            show: true,
-		                            formatter:function(data){
-//                                      return that.NumConvertUtil.getNumConvertMoney(data.value);
-		                                return data.name+":" +data.value +"("+(data.percent)+"%)";
-		                            }
+//		                            formatter:function(data){
+//		                                return data.name+":" +data.value +"("+(data.percent)+"%)";
+//		                            }
+		                             formatter:function(data){
+                                        return that.NumConvertUtil.getNumConvertMoney(data.value)+"("+(data.percent)+"%)";
+                                   }
+		                            
 		                        },
 		                        labelLine: {show: true}
 		                    }
