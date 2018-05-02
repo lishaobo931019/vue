@@ -584,6 +584,7 @@
 		                        label: {
 		                            show: true,
 		                            formatter:function(data){
+//                                      return that.NumConvertUtil.getNumConvertMoney(data.value);
 		                                return data.name+":" +data.value +"("+(data.percent)+"%)";
 		                            }
 		                        },
