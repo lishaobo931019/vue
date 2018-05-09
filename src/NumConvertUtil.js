@@ -135,8 +135,16 @@ NumConvertUtil = {
 	        str = newStr + (str + "00").substr((str + "00").indexOf("."), 3);
 	        console.log(str)
 	    }
-    }
-
+    },
+    formatDate2(value){//时间转XX-XX-XX
+      	var date = new Date();
+		date.setTime(value)
+//		console.log(date)
+		var year = date.getFullYear();
+		 var month = date.getMonth();
+		 var day = date.getDate();
+		 return year + '-' + ((month+1)<10?'0'+(month+1):(month+1)) + '-' +(day<10?'0'+day:day)
+      }
 
 }
 

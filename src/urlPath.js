@@ -60,8 +60,19 @@
 		},
 		biddingProportion(){
 			return axios.get('bid/chart/win/weight.json')//中标的占比情况
-		}		
+		},		
 		/***********/
 		//
 		//
+		getMarketList(file){
+			return axios.post("/market/list.json", file, {//市场信息列表
+	            headers: {
+	                'Content-Type': 'multiple/form-data'
+	            }
+	        })
+		}
+		
+		
+		
+		
 	}
