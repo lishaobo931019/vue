@@ -153,16 +153,15 @@
     	fd.append("rows",this.marketForm.rows)
     	
     	//请求接口
-    	var that = this;
-    	this.$http.getMarketList(fd).then(function(data){
-	  		
-	  		that.totalNum = data.data.total;
-	  		var list = data.data.rows;
+    	var that = this;//转译this指向
+    	this.$http.getMarketList(fd).then(function(data){//fd是传给后台参数。data是返回的数据。
+	  		that.totalNum = data.data.total;//总数
+	  		var list = data.data.rows;//列表数组
 	  		console.log(list)
 	  		for(var i = 0; i < list.length; i++){//遍历所有的时间戳。转换成XX-XX-XX的形式赋值
 				list[i].surveyStartTime = that.NumConvertUtil.formatDate2(list[i].surveyStartTime)
 			}
-			that.markettableData = list;
+			that.markettableData = list;//让列表数组等于后台返回的数组。
     	})
 
     },
