@@ -64,14 +64,17 @@
 		/***********/
 		//
 		//
+		/***********/
 		getMarketList(file){
 			return axios.post("/market/list.json", file, {//市场信息列表
 	            headers: {
 	                'Content-Type': 'multiple/form-data'
 	            }
 	        })
-		}
-		
+		},
+		getMarketTypeinfo(){
+			return axios.get("/market/select/category.json")
+		},
 		
 		
 		
