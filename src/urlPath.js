@@ -1,7 +1,7 @@
     import axios from 'axios'
     
     
-    //axios配置
+    //axios全局配置
     axios.defaults.baseURL = 'http://47.94.131.160:8080';
 	axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
     

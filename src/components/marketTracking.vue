@@ -93,7 +93,7 @@
 			<el-table-column  prop="regionCategory.category" label="所在片区" width="80"></el-table-column>
 		    <el-table-column  label="操作" width="100">
 		      	<template slot-scope="scope">
-		        	<el-button @click="handleClick(scope.row)" type="text" size="small">查看</el-button>
+		        	<el-button @click="handleClick" type="text" size="small" >查看</el-button>
 		        	<el-button type="text" size="small">编辑</el-button>
 		      	</template>
 		    </el-table-column>
@@ -106,13 +106,21 @@
 	      :total="totalNum">
 	    </el-pagination>
 	  </div>
+	  
+	  <marketsee v-if="marketsee" v-on:marketseetwo="marketseetwo"></marketsee>
+	  
 	</div>
 </template>
 
 <script>
+	import Marketsee from '@/components/Marketsee'//引入查看组件
 	export default {
+	components:{
+			marketsee:Marketsee//引入查看组件
+	},
     data() {
       return {
+      	marketsee:false,
       	currentPage1: 1,
         currentPage2: 5,
         currentPage3: 5,
@@ -194,6 +202,12 @@
 
     },
     methods: {
+    	handleClick(){
+    		this.marketsee = true;//点击查看出现组件
+    	},
+    	marketseetwo(res){
+    		this.marketsee = res//父组件接收子组件的信息
+    	},
     	formatDate(date){//转换时间格式
       	if(!date){
       		return 
