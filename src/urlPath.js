@@ -73,9 +73,26 @@
 	        })
 		},
 		getMarketTypeinfo(){
-			return axios.get("/market/select/category.json")
+			return axios.get("/market/select/category.json")//获取市场类别信息
+		},
+		getMarketdetail(id){
+			return axios.get("/market/detail.json",{
+				params:{
+					id:id
+				}
+			})//市场详情信息
 		},
 		
 		
+		/**
+		 * file
+		 */
 		
+		imageFileUrl:"http://hk-energy02.oss-cn-beijing.aliyuncs.com/",
+		
+		previewFileUrl:"http://ow365.cn/?i=15238&furl=http://hk-energy02.oss-cn-beijing.aliyuncs.com/"
+		
+		
+		
+
 	}

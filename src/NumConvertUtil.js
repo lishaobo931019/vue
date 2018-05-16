@@ -137,6 +137,9 @@ NumConvertUtil = {
 	    }
     },
     formatDate2(value){//时间转XX-XX-XX
+    	if (!value){
+    		return
+    	}
       	var date = new Date();
 		date.setTime(value)
 //		console.log(date)

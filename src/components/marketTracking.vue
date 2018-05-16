@@ -93,7 +93,7 @@
 			<el-table-column  prop="regionCategory.category" label="所在片区" width="80"></el-table-column>
 		    <el-table-column  label="操作" width="100">
 		      	<template slot-scope="scope">
-		        	<el-button @click="handleClick" type="text" size="small" >查看</el-button>
+		        	<el-button @click="handleClick(scope.row)" type="text" size="small" >查看</el-button>
 		        	<el-button type="text" size="small">编辑</el-button>
 		      	</template>
 		    </el-table-column>
@@ -107,7 +107,7 @@
 	    </el-pagination>
 	  </div>
 	  
-	  <marketsee v-if="marketsee" v-on:marketseetwo="marketseetwo"></marketsee>
+	  <marketsee v-if="marketsee" v-on:marketseetwo="marketseetwo" :child-msg="id"></marketsee>
 	  
 	</div>
 </template>
@@ -120,6 +120,7 @@
 	},
     data() {
       return {
+      	id:null,
       	marketsee:false,
       	currentPage1: 1,
         currentPage2: 5,
@@ -166,7 +167,7 @@
     	//读取数据写入
     	var that = this;
     	this.$http.getMarketTypeinfo().then(function(data){
-    		console.log(data)
+//  		console.log(data)
     		that.workCategoryList     = data.data.workCategoryList//任务类型
     		that.feedbackCategoryList = data.data.feedbackCategoryList//返回类型
     		that.areaCategoryList     = data.data.areaCategoryList//所在地区
@@ -193,7 +194,7 @@
     	this.$http.getMarketList(fd).then(function(data){//fd传给后台参数。data返回的数据。
 	  		that.totalNum = data.data.total;//总数
 	  		var list = data.data.rows;//列表数组
-	  		console.log(data)
+//	  		console.log(data)
 	  		for(var i = 0; i < list.length; i++){//遍历所有的时间戳。转换成XX-XX-XX的形式赋值
 				list[i].surveyStartTime = that.NumConvertUtil.formatDate2(list[i].surveyStartTime)
 			}
@@ -202,8 +203,11 @@
 
     },
     methods: {
-    	handleClick(){
+    	handleClick(scope){
     		this.marketsee = true;//点击查看出现组件
+//  		console.log(scope)
+    		this.id = scope.id;
+    		
     	},
     	marketseetwo(res){
     		this.marketsee = res//父组件接收子组件的信息
