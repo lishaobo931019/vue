@@ -1,13 +1,11 @@
 <template>
 	<div id="zhezhaoceng">
 		<div id="marketsee">
-   			 <input ref="fileCategory" type="hidden" value="market">
-			<h5>市场跟踪报告
-				<span id="cancel" @click="cancel">
-					关闭
-				</span>
+   			 <input ref="fileCategory" type="hidden" value="market">   <!--ref标识表示市场页面-->
+			<h5>
+				市场跟踪报告
+				<span id="cancel" @click="cancel">关闭</span>
 			</h5>
-			
 			<table cellSpacing="1" cellPadding="5" width="680" align="center" bgColor="#eeeeee" style="border:1px solid #8ba7e3" border="0">
 	        	<tr>
 		            <td align="center" bgColor="#f5fafe" class="ta_01">拜访对象:</td>
@@ -182,5 +180,6 @@
 		right: 10px;
 		color: red;
 		cursor: pointer;
+		font-size: 20px;
 	}
 </style>
