@@ -97,17 +97,11 @@
 	    },
 	    props: ['childMsg'],//子组件接收父组件传来的参
 	    methods: {
-		      onSubmit() {
-		        console.log('submit!');
+		      cancel(){//关闭按钮
+		      	this.$emit('marketseetwo',false)//子组件传给父组件的参数
 		      },
-		      cancel(){
-		      	this.$emit('marketseetwo',false)
-		      },
-		      yulan(item){
+		      yulan(item){//预览按钮
            		var category = this.$refs.fileCategory.value//获取dom节点——ref的用法
-//         		console.log(item)//名字
-//         		console.log(this.id)//id
-//         		console.log(category)//value标识
             	var url = null;
              	url = this.$http.previewFileUrl + category +"/" +this.id +"/" +item;
             	window.open (url,"newWindow","height=500, width=800, toolbar =no, menubar=no, scrollbars=yes, resizable=yes, location=no, status=no");
@@ -120,7 +114,7 @@
 			
 			this.$http.getMarketdetail(id).then(function(data){//请求数据
 				console.log(data)
-			that.id                    =data.data.id;	
+			that.id                    = data.data.id;	
 			that.surveyObject          = data.data.surveyObject;
 			that.responsiblePerson     = data.data.responsiblePerson;
 			that.workCategoryModel     = data.data.workCategoryModel.category;
