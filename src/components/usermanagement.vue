@@ -1,43 +1,89 @@
-<template>
+<template>	
 	<div id="">
 		<h5>应用系统列表</h5>
-		 <el-table :data="usermanageData" id="usermanageData" border >
-			<el-table-column  prop="Meetperson" label="工号" width="200" height="30"></el-table-column>
-			<el-table-column  prop="zeren" label="工作地点" width="180"></el-table-column>
-			<el-table-column  prop="date" label="手机号"  width="180"></el-table-column>
-			<el-table-column  prop="worktype" label="邮箱" width="180"></el-table-column>
-			<el-table-column  prop="over" label="创建时间" width="180"></el-table-column>
-		    <el-table-column  label="操作" width="100" fixed="right">
+		<el-table :data="usermanageData" id="usermanageData" border >
+			<el-table-column  prop="name" label="工号" width="200" height="30"></el-table-column>
+			<el-table-column  prop="workplace" label="工作地点" width="180"></el-table-column>
+			<el-table-column  prop="mobile" label="手机号"  width="180"></el-table-column>
+			<el-table-column  prop="email" label="邮箱" width="180"></el-table-column>
+			<el-table-column  prop="createDate" label="创建时间" width="180"></el-table-column>
+		    <el-table-column  label="操作" width="100" >
 		      	<template slot-scope="scope">
 		        	<el-button @click="handleClick(scope.row)" type="text" size="small">查看</el-button>
-		        	<el-button type="text" size="small">编辑</el-button>
 		      	</template>
 		    </el-table-column>
 		</el-table>
+		<div class="block">
+		    <el-pagination
+		      @size-change="handleSizeChange"
+		      @current-change="handleCurrentChange"
+		      :current-page.sync="currentPage1"
+		      :page-size="10"
+		      layout="total, prev, pager, next"
+		      :total="totalNum">
+		    </el-pagination>
+		</div>
+	     <usermanageinfo v-if="usermanageinfo" :child-msg="id" v-on:usermanagelist="usermanagelist"></usermanageinfo>
   </div>
 </template>
 
 <script>
-  export default {
-  	data(){
+	import usermanageinfo from '@/components/usermanageinfo'//引入查看组件
+export default {
+	components:{
+			usermanageinfo:usermanageinfo//引入查看组件
+	},
+	data(){
 	  	return{
-	  		usermanageData: [{
-	        	Meetperson: '小王',
-	          date: '2016-05-03',
-	        }, {
-	        	Meetperson: '小刘',
-	          date: '2016-05-02',
-	        }, {
-	        	Meetperson: '小李',
-	          date: '2016-05-04',
-	        }, {
-	        	Meetperson: '小张',
-	          date: '2016-05-01',
-	        }]
+	  		usermanageinfo:false,
+	  		id:null,
+	  		totalNum:10,
+	  		currentPage1: 1,
+	        currentPage2: 5,
+	        currentPage3: 5,
+	        currentPage4: 4,
+	        rows:10,
+	        page:1,
+	  		usermanageData: []
 	  	}
-  	}
-  	
-  }
+	},
+	created(){
+		var that = this;
+		
+		
+    	//钩子函数中利用formData来传值
+    	var fd = new FormData();
+    	fd.append('rows',that.rows)
+    	fd.append('page',that.page)
+    	
+		this.$http.UserListUrl(fd).then(function(data){
+			console.log(data)
+			var list = data.data.rows;
+			for(var i = 0; i < list.length; i++){//遍历所有的时间戳。转换成XX-XX-XX的形式赋值
+				list[i].createDate = that.NumConvertUtil.formatDate2(list[i].createDate)
+			}
+			that.usermanageData = list;//让列表数组等于后台返回的数组。
+			that.totalNum = data.data.total;//总数
+		})
+	},
+	methods:{
+		handleSizeChange(val) {
+        console.log(`每页 ${val} 条`);
+      },
+      handleCurrentChange(val) {//点击切换页面请求后台数据返回页面刷新
+        console.log(`当前页: ${val}`);
+      },
+      handleClick(scope){
+      	this.usermanageinfo = true;//点击查看出现组件
+//  		console.log(scope)
+    		this.id = scope.id;
+      },
+      usermanagelist(res){
+    		this.usermanageinfo = res//父组件接收子组件的信息
+    	}
+	}
+	
+}
 </script>
 <style>
 	/*第二个table的表头高度控制*/

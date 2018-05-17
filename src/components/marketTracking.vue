@@ -198,7 +198,7 @@
     	this.$http.getMarketList(fd).then(function(data){//fd传给后台参数。data返回的数据。
 	  		that.totalNum = data.data.total;//总数
 	  		var list = data.data.rows;//列表数组
-//	  		console.log(data)
+	  		console.log(data)
 	  		for(var i = 0; i < list.length; i++){//遍历所有的时间戳。转换成XX-XX-XX的形式赋值
 				list[i].surveyStartTime = that.NumConvertUtil.formatDate2(list[i].surveyStartTime)
 			}

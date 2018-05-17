@@ -76,12 +76,33 @@
 			return axios.get("/market/select/category.json")//获取市场类别信息
 		},
 		getMarketdetail(id){
-			return axios.get("/market/detail.json",{
+			return axios.get("/market/detail.json",{//市场详情信息
 				params:{
 					id:id
 				}
-			})//市场详情信息
+			})
 		},
+		
+		
+		
+		//用户的
+		
+		UserListUrl(file){
+			return axios.get("/user/list.json",file,{//管理用户
+				headers:{
+				'Content-Type': 'multiple/form-data'
+				}
+			})
+		},
+		
+		UserDetail(id){
+			return axios.get( "/user/detail.json",{//用户详情
+				params:{
+					id:id
+				}
+			})
+		},
+		
 		
 		
 		/**

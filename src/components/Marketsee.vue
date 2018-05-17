@@ -1,5 +1,5 @@
 <template>
-	<div id="zhezhaoceng">
+	<div id="marketseezhezhaoceng">
 		<div id="marketsee">
    			 <input ref="fileCategory" type="hidden" value="market">   <!--ref标识表示市场页面-->
 			<h5>
@@ -144,7 +144,7 @@
 </script>
 
 <style>
-	#zhezhaoceng{
+	#marketseezhezhaoceng{
 		width: 100%;
 		height: 100%;
 		background: rgba(0,0,0,0);
@@ -174,7 +174,7 @@
 		width: 100px;
 		text-align: left;
 	}
-	#cancel{
+	#marketsee #cancel{
 		position: absolute;
 		top: 0;
 		right: 10px;
