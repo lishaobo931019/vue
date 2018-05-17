@@ -94,7 +94,7 @@
 		    <el-table-column  label="操作" width="100">
 		      	<template slot-scope="scope">
 		        	<el-button @click="handleClick(scope.row)" type="text" size="small" >查看</el-button>
-		        	<el-button type="text" size="small">编辑</el-button>
+		        	<el-button @click="edit(scope.row)" type="text" size="small">编辑</el-button>
 		      	</template>
 		    </el-table-column>
 		</el-table>
@@ -107,20 +107,24 @@
 	    </el-pagination>
 	  </div>
 	  
+	  <marketedit v-if="marketedit"></marketedit>
 	  <marketsee v-if="marketsee" v-on:marketseetwo="marketseetwo" :child-msg="id"></marketsee>
 	  
 	</div>
 </template>
 
 <script>
+	import Marketedit from '@/components/Marketedit'//引入编辑组件
 	import Marketsee from '@/components/Marketsee'//引入查看组件
 	export default {
 	components:{
+			marketedit:Marketedit,//引入编辑组件
 			marketsee:Marketsee//引入查看组件
 	},
     data() {
       return {
       	id:null,
+      	marketedit:false,
       	marketsee:false,
       	currentPage1: 1,
         currentPage2: 5,
@@ -203,6 +207,10 @@
 
     },
     methods: {
+    	edit(){
+    		console.log(1)
+    		this.marketedit = true;//点击编辑出现组件
+    	},
     	handleClick(scope){
     		this.marketsee = true;//点击查看出现组件
 //  		console.log(scope)

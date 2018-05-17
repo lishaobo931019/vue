@@ -87,10 +87,11 @@
 		/**
 		 * file
 		 */
+		downloadWebFile:"http://47.94.131.160:8080/web/file/download/",//下载
 		
 		imageFileUrl:"http://hk-energy02.oss-cn-beijing.aliyuncs.com/",
 		
-		previewFileUrl:"http://ow365.cn/?i=15238&furl=http://hk-energy02.oss-cn-beijing.aliyuncs.com/"
+		previewFileUrl:"http://ow365.cn/?i=15238&furl=http://hk-energy02.oss-cn-beijing.aliyuncs.com/"//查看
 		
 		
 		

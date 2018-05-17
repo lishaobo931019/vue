@@ -56,7 +56,7 @@
 		                <!--<span id="" v-for="item in files"></span>-->
 		                <div v-for="item in files">
 			                <span>{{item}}</span>
-			                <a href="javascript:void(0)">下载</a>
+			                <a href="javascript:void(0)" @click="download(item)">下载</a>
 			                <a href="javascript:void(0)" @click="yulan(item)">预览</a>
 		                </div>
 		            </td>
@@ -105,6 +105,12 @@
             	var url = null;
              	url = this.$http.previewFileUrl + category +"/" +this.id +"/" +item;
             	window.open (url,"newWindow","height=500, width=800, toolbar =no, menubar=no, scrollbars=yes, resizable=yes, location=no, status=no");
+		      },
+		      download(item){
+		      	var category = this.$refs.fileCategory.value//获取dom节点——ref的用法
+            	var url = null;
+		      	url = this.$http.downloadWebFile + category +"/" +this.id +"/" +item;
+            	window.location.href = url;
 		      }
 	    },
 	    created(){
