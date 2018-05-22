@@ -62,9 +62,8 @@
 			return axios.get('bid/chart/win/weight.json')//中标的占比情况
 		},		
 		/***********/
-		//
-		//
-		/***********/
+		
+		/***市场***/
 		getMarketList(file){
 			return axios.post("/market/list.json", file, {//市场信息列表
 	            headers: {
@@ -82,6 +81,22 @@
 				}
 			})
 		},
+		ContactListUrl(file){
+			return axios.post("/contacts/list.json",file,{//获取联系人信息列表
+				headers:{
+				'Content-Type': 'multiple/form-data'
+				}
+			})
+		},
+		ContactsdetailUrl(id){
+			return axios.get("/contacts/detail.json",{//获取联系人详情信息
+				params:{
+					id:id
+				}
+			})
+		},
+		
+		
 		
 		
 		
@@ -113,8 +128,6 @@
 		imageFileUrl:"http://hk-energy02.oss-cn-beijing.aliyuncs.com/",
 		
 		previewFileUrl:"http://ow365.cn/?i=15238&furl=http://hk-energy02.oss-cn-beijing.aliyuncs.com/"//查看
-		
-		
 		
 
 	}

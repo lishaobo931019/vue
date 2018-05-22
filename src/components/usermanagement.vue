@@ -68,17 +68,17 @@ export default {
 	},
 	methods:{
 		handleSizeChange(val) {
-        console.log(`每页 ${val} 条`);
-      },
-      handleCurrentChange(val) {//点击切换页面请求后台数据返回页面刷新
-        console.log(`当前页: ${val}`);
-      },
-      handleClick(scope){
-      	this.usermanageinfo = true;//点击查看出现组件
+      	  console.log(`每页 ${val} 条`);
+      	},
+      	handleCurrentChange(val) {//点击切换页面请求后台数据返回页面刷新
+        	console.log(`当前页: ${val}`);
+     	},
+     	 handleClick(scope){
+      		this.usermanageinfo = true;//点击查看出现组件
 //  		console.log(scope)
     		this.id = scope.id;
-      },
-      usermanagelist(res){
+      	},
+      	usermanagelist(res){
     		this.usermanageinfo = res//父组件接收子组件的信息
     	}
 	}
