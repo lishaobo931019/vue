@@ -96,7 +96,20 @@
 			})
 		},
 		
-		
+		//合同接口
+		Contractlist(file){
+			return axios.post('/contract/list.json',file)//合同列表
+		},
+		ContractTypeinfo(){
+			return axios.get("contract/select/category.json")//获取合同类别信息
+		},
+		ContractdetailUrl(id){
+			return axios.get("/contract/detail.json",{//合同详情信息
+				params:{
+					id:id
+				}
+			})
+		} ,           
 		
 		
 		
@@ -127,7 +140,11 @@
 		
 		imageFileUrl:"http://hk-energy02.oss-cn-beijing.aliyuncs.com/",
 		
-		previewFileUrl:"http://ow365.cn/?i=15238&furl=http://hk-energy02.oss-cn-beijing.aliyuncs.com/"//查看
+		previewFileUrl:"http://ow365.cn/?i=15238&furl=http://hk-energy02.oss-cn-beijing.aliyuncs.com/",//查看
 		
-
+		uploadServerFile:"http://47.94.131.160:8080/web/file/upload/",
+		
+		initFile:"http://47.94.131.160:8080/web/file/init/",
+		
+		deleteFile:"http://47.94.131.160:8080/web/file/delete/"
 	}
