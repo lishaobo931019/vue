@@ -111,6 +111,29 @@
 			})
 		} ,           
 		
+		//招投标
+		bidListUrl(file){
+			return axios.post('bid/list.json',file)//招投标列表
+		},
+		contractSelectCategory(){
+			return axios.post('contract/select/category.json')//类别信息
+		},
+		bidAuditCategory(){
+			return axios.post('/category/bid/audit.json')
+		},
+		bidDetail(id){
+			return axios.get("/bid/detail.json",{//招投标详情信息
+				params:{
+					id:id
+				}
+			})
+		},
+		
+		
+		
+		
+		
+		
 		
 		
 		//用户的

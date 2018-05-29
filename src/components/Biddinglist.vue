@@ -7,14 +7,14 @@
 				<tr>
 					<td>
 						<el-form-item label="招标文件发布方" >
-				  			<el-input></el-input>
+				  			<el-input v-model="biddinglistForm.bidCompany"></el-input>
 				  		</el-form-item>
 					</td>
 					<td>
 						<el-form-item label="审核状态">
-			    			<el-select v-model="biddinglistForm.region" placeholder="无">
-			      				<el-option label="区域一" value="shanghai"></el-option>
-			      				<el-option label="区域二" value="beijing"></el-option>
+			    			<el-select v-model="biddinglistForm.status" placeholder="无">
+			      				<el-option label="无" value=""></el-option>
+				      			<el-option :label="item.category" :value="item.id" v-for="item in auditlist"></el-option>
 			   				</el-select>
 			  			</el-form-item>
 					</td>
@@ -24,14 +24,14 @@
 					<td>
 						<el-form-item label="合同签约时间">
 					    	<el-col :span="11">
-					    		<el-date-picker type="date" placeholder="选择日期" v-model="biddinglistForm.date1" ></el-date-picker>
+					    		<el-date-picker type="date" placeholder="选择日期" v-model="biddinglistForm.bidStartDate" ></el-date-picker>
 					   	 	</el-col>
 						</el-form-item>
 					</td>
 					<td>
 						<el-form-item label="合同签约时间">
 					    	<el-col :span="11">
-					    		<el-date-picker type="date" placeholder="选择日期" v-model="biddinglistForm.date2" ></el-date-picker>
+					    		<el-date-picker type="date" placeholder="选择日期" v-model="biddinglistForm.bidEndDate" ></el-date-picker>
 					    	</el-col>
 						</el-form-item>
 					</td>
@@ -40,17 +40,17 @@
 				<tr>
 					<td>
 						<el-form-item label="所在地区">
-			    			<el-select v-model="biddinglistForm.region" placeholder="无">
-			      				<el-option label="区域一" value="shanghai"></el-option>
-			      				<el-option label="区域二" value="beijing"></el-option>
+			    			<el-select v-model="biddinglistForm.area" placeholder="无">
+			      				<el-option label="无" value=""></el-option>
+				      			<el-option :label="item.category" :value="item.id" v-for="item in areaCategoryList"></el-option>
 			    			</el-select>
 			  			</el-form-item>
 					</td>
 					<td>
 						<el-form-item label="所在片区">
 			    			<el-select v-model="biddinglistForm.region" placeholder="无">
-			      				<el-option label="区域一" value="shanghai"></el-option>
-			      				<el-option label="区域二" value="beijing"></el-option>
+			      				<el-option label="无" value=""></el-option>
+				      			<el-option :label="item.category" :value="item.id" v-for="item in regionCategoryList"></el-option>
 			   				</el-select>
 			  			</el-form-item>
 					</td>
@@ -69,12 +69,12 @@
 	<!---->
 	
 		<el-table :data="biddinglisttableData" border style="width: 100%">
-			<el-table-column  prop="Meetperson" label="招标单位" width="150" height="30"></el-table-column>
-			<el-table-column  prop="zeren" label="招标项目名称" width="150"></el-table-column>
-			<el-table-column  prop="date" label="投标日期" sortable width="150"></el-table-column>
-			<el-table-column  prop="over" label="审核状态" width="150"></el-table-column>
-			<el-table-column  prop="suozai" label="所在地区" width="150"></el-table-column>
-			<el-table-column  prop="suozai" label="所在片区" width="150"></el-table-column>
+			<el-table-column  prop="bidCompany" label="招标单位" width="150" height="30"></el-table-column>
+			<el-table-column  prop="bidProject" label="招标项目名称" width="150"></el-table-column>
+			<el-table-column  prop="bidTime" label="投标日期" sortable width="150"></el-table-column>
+			<el-table-column  prop="bidAuditCategory.category" label="审核状态" width="150"></el-table-column>
+			<el-table-column  prop="areaCategory.category" label="所在地区" width="150"></el-table-column>
+			<el-table-column  prop="regionCategory.category" label="所在片区" width="150"></el-table-column>
 		    <el-table-column  label="操作" width="100">
 		      	<template slot-scope="scope">
 		        	<el-button @click="handleClick(scope.row)" type="text" size="small">查看</el-button>
@@ -82,42 +82,207 @@
 		      	</template>
 		    </el-table-column>
 		</el-table>
+		
+		<div class="block">
+	    <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page.sync="currentPage1"
+	      :page-size="10"
+	      layout="total, prev, pager, next"
+	      :total="totalNum">
+	    </el-pagination>
+	  </div>
+		
+		<biddingsee v-if="biddingsee" v-on:bidding="bidding" :child-msg="id"></biddingsee>
+		
 	</div>
 </template>
 
 <script>
+	import biddingsee from '@/components/biddingsee'//引入查看组件
 	export default {
+	components:{
+		biddingsee:biddingsee	
+	},
     data() {
       return {
+      	id:null,
+      	biddingsee:false,
+      	totalNum:0,
+      	currentPage1: 1,
+        currentPage2: 5,
+        currentPage3: 5,
+        currentPage4: 4,
         biddinglistForm: {
-          name: '拜访对象',
-          region: '',
-          date1: '',
-          date2: '',
-          delivery: false,
-          type: [],
-          resource: '',
-          desc: ''
+          	bidCompany:'',
+        	bider:'',
+        	bidStartDate:'',
+        	bidEndDate:'',
+        	status:'',
+        	area:'',
+        	region:'',
+        	sort:'bidTime',
+        	order:'desc',
+        	page:1,
+        	rows:10
         },
-        biddinglisttableData: [{
-        	Meetperson: '小王',
-          date: '2016-05-03',
-        }, {
-        	Meetperson: '小刘',
-          date: '2016-05-02',
-        }, {
-        	Meetperson: '小李',
-          date: '2016-05-04',
-        }, {
-        	Meetperson: '小张',
-          date: '2016-05-01',
-        }]
+        inputbiddingform:{//发送给后台对接数据
+        	bidCompany:'',
+        	bider:'',
+        	bidStartDate:'',
+        	bidEndDate:'',
+        	status:'',
+        	area:'',
+        	region:'',
+        	sort:'bidTime',
+        	order:'desc',
+        	page:1,
+        	rows:10
+        },
+        biddinglisttableData: [],
+        areaCategoryList:[],
+        invoiceCategoryList:[],
+        productCategoryList:[],
+        regionCategoryList:[],
+        auditlist:[]
       };
     },
     methods: {
-      onSubmit() {
-        console.log('submit!');
-      }
+    	handleClick(scope){
+    		this.biddingsee = true
+    		this.id = scope.id;
+    		console.log(scope.id)
+    	},
+    	bidding(res){
+    		this.biddingsee = res//父组件接收子组件的信息 = res//父组件接收子组件的信息
+    	},
+    	formatDate(date){//转换时间格式
+      	if(!date){
+      		return 
+      	}
+      		var date = new Date(date);
+	      	var year = date.getFullYear();
+	      	var month = date.getMonth();
+	      	var day = date.getDate();
+	      	return year + '-' + ((month+1)<10?'0'+(month+1):(month+1)) + '-' +(day<10?'0'+day:day)
+	  
+	//    	console.log(date.getFullYear())
+      },
+    	onSubmit() {
+        	console.log('submit!');
+        	this.currentPage1 = 1;
+      		this.inputbiddingform = JSON.parse(JSON.stringify(this.biddinglistForm));//点击搜查时让两个对象相等，以便对接后台的对象等于数据双向绑定的对象。
+        	var fd = new FormData();
+	    	fd.append("bidCompany",this.inputbiddingform.bidCompany)
+	    	fd.append("bider",this.inputbiddingform.bider)
+	    	fd.append("bidStartDate",this.formatDate(this.inputbiddingform.bidStartDate))//点击查询时候修改时间的格式
+	    	fd.append("bidEndDate",this.formatDate(this.inputbiddingform.bidEndDate))
+	    	fd.append("status",this.inputbiddingform.status)
+	    	fd.append("area",this.inputbiddingform.area)
+	    	fd.append("region",this.inputbiddingform.region)
+	    	fd.append("sort",this.inputbiddingform.sort)
+	    	fd.append("order",this.inputbiddingform.order)
+	    	fd.append("page",1)
+	    	fd.append("rows",this.inputbiddingform.rows)
+	    	
+	    	//请求接口
+	    	var that = this;//转译this指向
+	    	this.$http.bidListUrl(fd).then(function(data){
+	    		console.log(data)
+	    		that.totalNum = data.data.total;//总数
+	    		var list = data.data.rows;//列表数组
+	    		for(var i = 0; i < list.length; i++){//遍历所有的时间戳。转换成XX-XX-XX的形式赋值
+					list[i].bidTime = that.NumConvertUtil.formatDate2(list[i].bidTime)
+				}
+				that.biddinglisttableData = list;//让列表数组等于后台返回的数组。
+	    	})
+      	},
+        handleSizeChange(val) {
+        	console.log(`每页 ${val} 条`);
+      	},
+      	handleCurrentChange(val) {//点击切换页面请求后台数据返回页面刷新
+        	console.log(`当前页: ${val}`);
+        	//钩子函数中利用formData来传值
+	    	var fd = new FormData();
+	    	fd.append("bidCompany",this.inputbiddingform.bidCompany)
+	    	fd.append("bider",this.inputbiddingform.bider)
+	    	fd.append("bidStartDate",this.inputbiddingform.bidStartDate)
+	    	fd.append("bidEndDate",this.inputbiddingform.bidEndDate)
+	    	fd.append("status",this.inputbiddingform.status)
+	    	fd.append("area",this.inputbiddingform.area)
+	    	fd.append("region",this.inputbiddingform.region)
+	    	fd.append("sort",this.inputbiddingform.sort)
+	    	fd.append("order",this.inputbiddingform.order)
+	    	fd.append("page",val)
+	    	fd.append("rows",this.inputbiddingform.rows)
+	    	
+	    	//请求接口
+	    	var that = this;//转译this指向
+	    	this.$http.bidListUrl(fd).then(function(data){
+	    		console.log(data)
+	    		that.totalNum = data.data.total;//总数
+	    		var list = data.data.rows;//列表数组
+	    		for(var i = 0; i < list.length; i++){//遍历所有的时间戳。转换成XX-XX-XX的形式赋值
+					list[i].bidTime = that.NumConvertUtil.formatDate2(list[i].bidTime)
+				}
+				that.biddinglisttableData = list;//让列表数组等于后台返回的数组。
+	    	})
+        	
+	  	}
+    },
+    created(){
+    	var that = this;
+    	this.$http.contractSelectCategory().then(function(data){
+    		that.areaCategoryList    = data.data.areaCategoryList
+    		that.invoiceCategoryList = data.data.invoiceCategoryList
+    		that.productCategoryList = data.data.productCategoryList
+    		that.regionCategoryList  = data.data.regionCategoryList
+    	})
+    	
+    	this.$http.bidAuditCategory().then(function(data){
+    			that.auditlist =data.data
+    	})
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	//钩子函数中利用formData来传值
+    	var fd = new FormData();
+    	fd.append("bidCompany",this.inputbiddingform.bidCompany)
+    	fd.append("bider",this.inputbiddingform.bider)
+    	fd.append("bidStartDate",this.inputbiddingform.bidStartDate)
+    	fd.append("bidEndDate",this.inputbiddingform.bidEndDate)
+    	fd.append("status",this.inputbiddingform.status)
+    	fd.append("area",this.inputbiddingform.area)
+    	fd.append("region",this.inputbiddingform.region)
+    	fd.append("sort",this.inputbiddingform.sort)
+    	fd.append("order",this.inputbiddingform.order)
+    	fd.append("page",this.inputbiddingform.page)
+    	fd.append("rows",this.inputbiddingform.rows)
+    	
+    	//请求接口
+    	var that = this;//转译this指向
+    	this.$http.bidListUrl(fd).then(function(data){
+    		console.log(data)
+    		that.totalNum = data.data.total;//总数
+    		var list = data.data.rows;//列表数组
+    		for(var i = 0; i < list.length; i++){//遍历所有的时间戳。转换成XX-XX-XX的形式赋值
+				list[i].bidTime = that.NumConvertUtil.formatDate2(list[i].bidTime)
+			}
+			that.biddinglisttableData = list;//让列表数组等于后台返回的数组。
+    	})
     }
   };
 	

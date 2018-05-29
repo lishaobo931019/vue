@@ -113,12 +113,12 @@
 		                        <th class="firsttr" align="center" width="20%" height=20>数量</th>
 		                        <th class="firsttr" align="center" width="20%" height=20>总价</th>
         					</tr>
-        					<tr>
-        						<td class="secondtr" align="center" width="20%" height=20>{{productCategoryModel}}</td>
-        						<td class="secondtr" align="center" width="20%" height=20>{{unitPrice}}</td>
-        						<td class="secondtr" align="center" width="20%" height=20>{{priceUnitCategoryModel}}</td>
-        						<td class="secondtr" align="center" width="20%" height=20>{{amount}}</td>
-        						<td class="secondtr" align="center" width="20%" height=20>{{summation}}</td>
+        					<tr v-for="item in contractProductList">
+        						<td class="secondtr" align="center" width="20%" height=20>{{item.productCategoryModel.category}}</td>
+        						<td class="secondtr" align="center" width="20%" height=20>{{item.unitPrice}}</td>
+        						<td class="secondtr" align="center" width="20%" height=20>{{item.priceUnitCategoryModel.category}}</td>
+        						<td class="secondtr" align="center" width="20%" height=20>{{item.amount}}</td>
+        						<td class="secondtr" align="center" width="20%" height=20>{{item.summation}}</td>
         					</tr>
         				
         				</table>
@@ -156,11 +156,7 @@
 	          	comment:'',
 	          	files:'',
 	          	trProductTable:[],
-	          	productCategoryModel:'',
-	          	unitPrice:'',
-	          	priceUnitCategoryModel:'',
-	          	amount:'',
-	          	summation:''
+	          	contractProductList:{}
 			}
 		},
 		created(){
@@ -187,16 +183,7 @@
 				that.note = data.data.note
 				that.comment = data.data.comment
 				that.files = data.data.files
-				/**/
-				/**/
-				var list  = data.data.contractProductList
-				for(var i = 0; i < list.length; i++){//遍历数组
-					that.productCategoryModel = list[i].productCategoryModel.category
-					that.unitPrice = list[i].unitPrice
-					that.priceUnitCategoryModel = list[i].priceUnitCategoryModel.category
-					that.amount = list[i].amount
-					that.summation = list[i].summation
-				}
+				that.contractProductList  = data.data.contractProductList
 				
 			})
 		},
@@ -207,9 +194,14 @@
 		     },
 		     yulan(item){
 		     	console.log(this.id)
+		     	
+		     	var url = null;
 		     	var category = this.$refs.fileCategory.value//获取dom节点——ref的用法
-            	var url = null;
-             	url = this.$http.previewFileUrl + category +"/" +this.id +"/" +item;
+//	                url = this.$http.imageFileUrl + category +"/" +this.id +"/" +item;
+	                url = this.$http.previewFileUrl + category +"/" +this.id +"/" +item;
+		     	
+		     	
+            	
             	window.open (url,"newWindow","height=500, width=800, toolbar =no, menubar=no, scrollbars=yes, resizable=yes, location=no, status=no");
 		     },
 		     download(item){
@@ -233,17 +225,17 @@
 		padding: 10px;
 		overflow: auto;
 	}
-	#insidedata{
+	#contractsee #insidedata{
 		width: 100%;
 		border-collapse:collapse;
 		border: 1px solid #B3C0D1;
 
 		
 	}
-	#insidedata .firsttr{
+	#contractsee #insidedata .firsttr{
 		background: #D3DCE6;
 	}
-	#insidedata td{
+	#contractsee #insidedata td{
 		border: 1px solid #D3DCE6;
 	}
 	#contractsee h5{
