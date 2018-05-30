@@ -26,9 +26,9 @@
 					</td>
 					<td class="tipstd">
 						<el-form-item label="确认密码">
-				    		<el-input type="password" v-model="adduserform.pwdConfirm" v-validate="'required|pwdConfirm'" name="pwdConfirm"></el-input>
+				    		<el-input type="password" v-model="adduserform.pwdConfirm" v-validate="'required|confirmed:password'" name="pwdConfirm"></el-input>
 				  		</el-form-item>
-				  		<span class="tipsinfo" v-show="errors.has('pwdConfirm')">{{ errors.first('pwdConfirm') }}</span>
+				  		<span class="tipsinfo" v-show="errors.has('pwdConfirm')">两次输入的密码不一致</span>
 					</td>
 				</tr>
 				<!--第三行-->
