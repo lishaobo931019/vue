@@ -154,6 +154,28 @@
 			})
 		},
 		
+		MarketSearchCategory(){
+			return axios.post('market/select/category.json')//添加用户中的下拉列表
+		},
+		
+		staffIdGenerateUrl(){
+			return axios.post('user/staff/generate.json')//添加用户工号
+		},
+		
+		UserAddUrl(opt){
+			return axios.post('user/add.json',{
+				area:opt.area,
+				comment:'',//字段必须为空
+				isDuty:'',//同上
+				mobile:opt.mobile,
+				name:opt.name,
+				pwd:opt.pwd,
+				pwdConfirm:opt.pwdConfirm,
+				region:opt.region,
+				staffId:opt.staffId
+			})//添加用户接口
+		},
+		
 		
 		
 		/**

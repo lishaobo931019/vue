@@ -7,6 +7,8 @@ import $http from './urlPath.js'
 import echarts from 'echarts'
 import 'babel-polyfill'//兼容IE
 
+import $validate from './validate.js'//引入表单验证文件
+
 
 import NumConvertUtil from './NumConvertUtil'//过滤器
 
