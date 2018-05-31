@@ -111,17 +111,21 @@
 	    },
 	    methods: {
 		    onSubmit() {
-		    	
-		    	
-		        var that = this
-		        this.adduserform.staffId = this.staffId;
-		        this.$http.UserAddUrl(this.adduserform).then(function(data){
-		        	console.log(data)
-		       		 //点击保存跳转到列表——成功时跳转
-		    		this.$router.push({path:'usermanagement'});
-		        }) .catch(function (error) {
-				    console.log(error);
-				});
+		    	var that = this;
+		    	this.$validator.validateAll().then(function(res){
+		    		if(res){
+		    			console.log(res)
+		    			that.adduserform.staffId = that.staffId;
+		    			that.$http.UserAddUrl(that.adduserform).then(function(data){
+				        	console.log(data)
+				       		 //点击保存跳转到列表——成功时跳转
+				    		that.$router.push({path:'usermanagement'});
+				        }) .catch(function (error) {
+						    console.log(error);
+						});
+		    		}
+		    	})
+
 		        
 		    }
 	    },
