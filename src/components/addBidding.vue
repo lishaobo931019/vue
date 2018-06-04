@@ -77,6 +77,48 @@
 				<el-form-item label="包号清单" id="addPerson">
 				    <el-button type="primary" style="float: left;">添加清单</el-button>
 				</el-form-item>
+				
+				<table  id="insidedata">
+        					<tr >
+        						<th class="firsttr" align="center" width="16.66%" height=20>包号</th>
+		                        <th class="firsttr" align="center" width="16.66%" height=20>产品类型</th>
+		                        <th class="firsttr" align="center" width="16.66%" height=20>数量</th>
+		                        <th class="firsttr" align="center" width="16.66%" height=20>单位</th>
+		                        <th class="firsttr" align="center" width="16.66%" height=20>中标单位</th>
+		                        <th class="firsttr" align="center" width="16.66%" height=20>中标价格</th>
+		                        <th class="firsttr" align="center" width="16.66%" height=20>操作</th>
+        					</tr>
+        					<tr>
+        						<td class="secondtr" align="center" width="16.66%" height=20>
+        							<input type="text" class="inpu"/>
+        						</td>
+        						<td class="secondtr" align="center" width="16.66%" height=20>
+        							<input type="text"  class="inpu"/>
+        						</td>
+        						
+        						<td class="secondtr" align="center" width="16.66%" height=20>
+        							<input type="text"  class="inpu"/>
+        						</td>
+        						<td class="secondtr" align="center" width="16.66%" height=20>
+        							<input type="text"  class="inpu"/>
+        						</td>
+        						<td class="secondtr" align="center" width="16.66%" height=20>
+        							<input type="text"  class="inpu"/>
+        						</td>
+        						<td class="secondtr" align="center" width="16.66%" height=20>
+        							<input type="text"  class="inpu"/>
+        						</td>
+        						<td class="secondtr" align="center" width="16.66%" height=20>
+        							<input type="button" value="删除" class="del"/>
+        						</td>
+        					</tr>
+        					
+        				
+        				</table>
+				
+				
+				
+				
 			</div>		
 				
 				<el-form-item>
@@ -200,5 +242,32 @@
 	#addBiddingMarket .upload-demo{
 		margin: auto;
 		margin-top: 80px;
+	}
+	
+	
+	#addBiddingMarket #insidedata{
+		margin-top: 10px;
+		margin-bottom: 10px;
+		width: 100%;
+		border-collapse:collapse;
+		border: 1px solid #ebeef5;
+		font-size: 14px;
+   		color: #606266;
+	}
+	#addBiddingMarket #insidedata .firsttr{
+		background: #fff;
+	}
+	#addBiddingMarket #insidedata td{
+		border: 1px solid #ebeef5;
+	}
+	#addBiddingMarket #insidedata .inpu{
+		width: 100px;
+		border: 1px solid #D3DCE6;
+	}
+	#addBiddingMarket #insidedata .del{
+		width: 50px;
+		background: #409EFF;
+		border: none;
+		color: #FFFFFF;
 	}
 </style>
