@@ -97,14 +97,18 @@
         							<input type="text" class="inpu"/>
         						</td>
         						<td class="secondtr" align="center" width="16.66%" height=20>
-        							<input type="text"  class="inpu"/>
+        							<select class="inpu">
+        								<option :value="item.id" :label="item.category"  v-for="item in productCategoryList"></option>
+        							</select>
         						</td>
         						
         						<td class="secondtr" align="center" width="16.66%" height=20>
         							<input type="text"  class="inpu"/>
         						</td>
         						<td class="secondtr" align="center" width="16.66%" height=20>
-        							<input type="text"  class="inpu"/>
+        							<select class="inpu">
+        								<option :value="item.id" :label="item.category" v-for="item in priceUnitCategoryList"></option>
+        							</select>
         						</td>
         						<td class="secondtr" align="center" width="16.66%" height=20>
         							<input type="text"  class="inpu"/>
@@ -152,7 +156,9 @@
 		        addBiddingform: {},
 	        	areaCategoryList:[],
 	       	 	regionCategoryList:[],
-	        	bidAuditCategoryList:[]
+	        	bidAuditCategoryList:[],
+	        	productCategoryList:[],
+	        	priceUnitCategoryList:[]
 	      }
 	    },
 	    methods: {
@@ -200,6 +206,8 @@
 	    		that.areaCategoryList = data.data.areaCategoryList
 	    		that.regionCategoryList = data.data.regionCategoryList
 	    		that.bidAuditCategoryList = data.data.bidAuditCategoryList
+	    		that.productCategoryList = data.data.productCategoryList
+	    		that.priceUnitCategoryList = data.data.priceUnitCategoryList
 	    	})
 	    }
  	 }
