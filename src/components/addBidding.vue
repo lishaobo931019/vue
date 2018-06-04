@@ -7,12 +7,14 @@
 				<tr>
 					<td>
 						<el-form-item label="招标单位" >
-				  			<el-input></el-input>
+				  			<el-input v-model="addBiddingform.bidCompany" v-validate="'required'" name="name1"></el-input>
+				  			<span class="tipsinfo" v-show="errors.has('name1')">不能为空</span>
 				  		</el-form-item>
 					</td>
 					<td>
 						<el-form-item label="招标项目名称">
-				  			<el-input></el-input>
+				  			<el-input  v-model="addBiddingform.bidProject"  v-validate="'required'" name="name2"></el-input>
+				  			<span class="tipsinfo" v-show="errors.has('name2')">不能为空</span>
 				  		</el-form-item>
 					</td>
 				</tr>
@@ -20,7 +22,7 @@
 				<tr>
 					<td>
 						<el-form-item label="招标数量" >
-				  			<el-input></el-input>
+				  			<el-input v-model="addBiddingform.bidAmount"></el-input>
 				  		</el-form-item>
 					</td>
 				</tr>
@@ -28,14 +30,15 @@
 				<tr>
 					<td>
 						<el-form-item label="招标时间">
-				  			<el-date-picker type="date" placeholder="选择日期" v-model="addBiddingform.date1" ></el-date-picker>
+				  			<el-date-picker type="date" placeholder="选择日期" v-model="addBiddingform.bidTime" v-validate="'required'" name="date"></el-date-picker>
+				  			<span class="tipsinfo" v-show="errors.has('date')">不能为空</span>
 				  		</el-form-item>
 					</td>
 					<td>
 						<el-form-item label="审核状态" >
-				  			<el-select v-model="addBiddingform.region" placeholder="无">
-			      				<el-option label="区域一" value="shanghai"></el-option>
-			      				<el-option label="区域二" value="beijing"></el-option>
+				  			<el-select v-model="addBiddingform.status" placeholder="无">
+			      				<el-option label="无" value=""></el-option>
+			      				<el-option :label="item.category" :value="item.id" v-for="item in bidAuditCategoryList"></el-option>
 			    			</el-select>
 				  		</el-form-item>
 					</td>
@@ -45,17 +48,17 @@
 				<tr>
 					<td>
 						<el-form-item label="所在地区">
-			    			<el-select v-model="addBiddingform.region" placeholder="无">
-			      				<el-option label="区域一" value="shanghai"></el-option>
-			      				<el-option label="区域二" value="beijing"></el-option>
+			    			<el-select v-model="addBiddingform.area" placeholder="无" >
+			      				<el-option label="无" value=""></el-option>
+			      				<el-option :label="item.category" :value="item.id" v-for="item in areaCategoryList"></el-option>
 			    			</el-select>
 			  			</el-form-item>
 					</td>
 					<td>
 						<el-form-item label="所在片区">
 			    			<el-select v-model="addBiddingform.region" placeholder="无">
-			      				<el-option label="区域一" value="shanghai"></el-option>
-			      				<el-option label="区域二" value="beijing"></el-option>
+			      				<el-option label="无" value=""></el-option>
+			      				<el-option :label="item.category" :value="item.id" v-for="item in regionCategoryList"></el-option>
 			   				</el-select>
 			  			</el-form-item>
 					</td>
@@ -67,18 +70,19 @@
 			<div class="text-box-addBidding">
 				<!--第五行-->
 				<el-form-item label="备注" class="box">
-				    <el-input type="textarea"  v-model="addBiddingform.desc"></el-input>
+				    <el-input type="textarea"  v-model="addBiddingform.comment"></el-input>
 				</el-form-item>
 				<!--第七行-->
 				<el-form-item label="招标总结" class="box">
-					<el-input type="textarea"  v-model="addBiddingform.desc"></el-input>
+					<el-input type="textarea"  v-model="addBiddingform.bidSummary"></el-input>
 				</el-form-item>
 				
 				<el-form-item label="包号清单" id="addPerson">
-				    <el-button type="primary" style="float: left;">添加清单</el-button>
+				    <el-button type="primary" style="float: left;" @click="addlist">添加清单</el-button>
 				</el-form-item>
-				
-				<table  id="insidedata">
+				<!---->
+				<!---->
+				<table  id="insidedata" v-show="listshow">
         					<tr >
         						<th class="firsttr" align="center" width="16.66%" height=20>包号</th>
 		                        <th class="firsttr" align="center" width="16.66%" height=20>产品类型</th>
@@ -88,7 +92,7 @@
 		                        <th class="firsttr" align="center" width="16.66%" height=20>中标价格</th>
 		                        <th class="firsttr" align="center" width="16.66%" height=20>操作</th>
         					</tr>
-        					<tr>
+        					<tr v-for="item in listshow">
         						<td class="secondtr" align="center" width="16.66%" height=20>
         							<input type="text" class="inpu"/>
         						</td>
@@ -109,15 +113,10 @@
         							<input type="text"  class="inpu"/>
         						</td>
         						<td class="secondtr" align="center" width="16.66%" height=20>
-        							<input type="button" value="删除" class="del"/>
+        							<input type="button" value="删除" class="del" @click="delatetr()"/>
         						</td>
         					</tr>
-        					
-        				
         				</table>
-				
-				
-				
 				
 			</div>		
 				
@@ -146,23 +145,43 @@
 <script>
 	export default {
 	    data() {
-	      return {
-	      	 fileList: [ ],
-	        addBiddingform: {
-	          name: '',
-	          region: '',
-	          date1: '',
-	          date2: '',
-	          delivery: false,
-	          type: [],
-	          resource: '',
-	          desc: ''
-	        }
+	      	return {
+	      		id:'',
+		      	listshow:0,
+		      	fileList: [],
+		        addBiddingform: {},
+	        	areaCategoryList:[],
+	       	 	regionCategoryList:[],
+	        	bidAuditCategoryList:[]
 	      }
 	    },
 	    methods: {
+	    	addlist(){
+	    		this.listshow++  //增加tr
+	    	},
+	    	delatetr(){
+	    		this.listshow--
+	    	},
 	      	onSubmit() {
-	        	console.log('submit!');
+	        	var that = this;
+	        	that.addBiddingform.id = this.uuid();//引入uuid唯一标识
+	        	that.addBiddingform.bidTime = Date.parse(new Date(that.addBiddingform.bidTime))//时间最终转为字符戳
+	        	this.$validator.validateAll().then(function(res){//固定用法格式
+		    		if(res){
+		    			console.log(res)
+		    			that.$http.bidAddUrl(that.addBiddingform).then(function(data){
+				        	console.log(data)
+				       		 //点击保存跳转到列表——成功时跳转
+				    		that.$router.push({path:'Biddinglist'});
+				        }) .catch(function (error) {
+						    console.log(error);
+						});
+		    		}
+		    	})
+	        	
+	        	
+	        	
+	        	
 	      	},
 		    submitUpload() {
 	        	this.$refs.upload.submit();
@@ -173,6 +192,15 @@
 	      	handlePreview(file) {
 	        	console.log(file);
 	     	}
+	    },
+	    created(){
+	    		var that = this;
+	    		this.$http.allCategory().then(function(data){//向后台拿取下拉列表数据
+	    		console.log(data)
+	    		that.areaCategoryList = data.data.areaCategoryList
+	    		that.regionCategoryList = data.data.regionCategoryList
+	    		that.bidAuditCategoryList = data.data.bidAuditCategoryList
+	    	})
 	    }
  	 }
 </script>
@@ -269,5 +297,20 @@
 		background: #409EFF;
 		border: none;
 		color: #FFFFFF;
+		font-size: 12px;
 	}
+	
+	
+	/*下面是调整提示语的位置*/
+	#addBiddingMarket .tipstd{
+		position: relative
+	}
+	#addBiddingMarket .tipsinfo{
+		font-size: 10px;
+		color: red;
+		position: absolute;
+		top: 30px;
+		left: 3px;
+	}
+	
 </style>

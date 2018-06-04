@@ -70,8 +70,8 @@
 						<el-form-item label="入职时间">
 					    	<el-select placeholder="无" v-model="adduserform.isDuty">
 			      				<el-option label="无" value=""></el-option>
-			      				<el-option label="在职" value="shanghai"></el-option>
-			      				<el-option label="离职" value="beijing"></el-option>
+			      				<el-option label="在职" value="1"></el-option>
+			      				<el-option label="离职" value="2"></el-option>
 			   				</el-select>
 						</el-form-item>
 					</td>
@@ -125,8 +125,6 @@
 						});
 		    		}
 		    	})
-
-		        
 		    }
 	    },
 	    created(){
@@ -136,12 +134,6 @@
 	    		console.log(data)
 	    		that.staffId = data.data
 	    	})
-	    	
-	    	
-	    	
-	    	
-	    	
-	    	
 	    	
 	    	this.$http.MarketSearchCategory().then(function(data){//读取两个下拉列表
 	    		console.log(data)

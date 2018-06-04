@@ -111,6 +111,9 @@
 			})
 		} ,           
 		
+		
+		
+		
 		//招投标
 		bidListUrl(file){
 			return axios.post('bid/list.json',file)//招投标列表
@@ -128,9 +131,23 @@
 				}
 			})
 		},
-		
-		
-		
+		allCategory(){
+			return axios.post('/category/all.json')//添加招投标类别信息
+		},
+		bidAddUrl(opt){
+			return axios.post('/bid/add.json',{//添加招投标信息
+				area:opt.area,
+				bidAmount:opt.bidAmount,
+				bidCompany:opt.bidCompany,
+				bidProject:opt.bidProject,
+				bidSummary:opt.bidSummary,
+				bidTime:opt.bidTime,
+				comment:opt.comment,
+				id:opt.id,
+				region:opt.region,
+				status:opt.status
+			})
+		},
 		
 		
 		
@@ -163,7 +180,7 @@
 		},
 		
 		UserAddUrl(opt){
-			return axios.post('user/add.json',{
+			return axios.post('user/add.json',{//添加用户接口
 				area:opt.area,
 				comment:'',//字段必须为空
 				isDuty:'',//同上
@@ -173,7 +190,7 @@
 				pwdConfirm:opt.pwdConfirm,
 				region:opt.region,
 				staffId:opt.staffId
-			})//添加用户接口
+			})
 		},
 		
 		
