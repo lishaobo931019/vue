@@ -145,7 +145,8 @@
 				comment:opt.comment,
 				id:opt.id,
 				region:opt.region,
-				status:opt.status
+				status:opt.status,
+				bidPkgList:opt.bidPkgList
 			})
 		},
 		

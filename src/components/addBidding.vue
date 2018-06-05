@@ -82,7 +82,7 @@
 				</el-form-item>
 				<!---->
 				<!---->
-				<table  id="insidedata" v-show="listshow">
+				<table  id="insidedata">
         					<tr >
         						<th class="firsttr" align="center" width="16.66%" height=20>包号</th>
 		                        <th class="firsttr" align="center" width="16.66%" height=20>产品类型</th>
@@ -92,32 +92,32 @@
 		                        <th class="firsttr" align="center" width="16.66%" height=20>中标价格</th>
 		                        <th class="firsttr" align="center" width="16.66%" height=20>操作</th>
         					</tr>
-        					<tr v-for="item in listshow">
-        						<td class="secondtr" align="center" width="16.66%" height=20>
-        							<input type="text" class="inpu"/>
+        					<tr v-for="(item,index) in arrList">
+        						<td class="secondtr" align="center" width="16.66%" height=20 >
+        							<input type="text" class="inpu" v-model="item.pkgNum"/>
         						</td>
         						<td class="secondtr" align="center" width="16.66%" height=20>
-        							<select class="inpu">
-        								<option :value="item.id" :label="item.category"  v-for="item in productCategoryList"></option>
+        							<select class="inpu" v-model="item.productCategory">
+        								<option :value="item.id" :label="item.category" v-for="item in productCategoryList"></option>
         							</select>
         						</td>
         						
         						<td class="secondtr" align="center" width="16.66%" height=20>
-        							<input type="text"  class="inpu"/>
+        							<input type="text"  class="inpu" v-model="item.amount"/>
         						</td>
         						<td class="secondtr" align="center" width="16.66%" height=20>
-        							<select class="inpu">
+        							<select class="inpu" v-model="item.unit">
         								<option :value="item.id" :label="item.category" v-for="item in priceUnitCategoryList"></option>
         							</select>
         						</td>
         						<td class="secondtr" align="center" width="16.66%" height=20>
-        							<input type="text"  class="inpu"/>
+        							<input type="text"  class="inpu" v-model="item.bidder"/>
         						</td>
         						<td class="secondtr" align="center" width="16.66%" height=20>
-        							<input type="text"  class="inpu"/>
+        							<input type="text"  class="inpu" v-model="item.tenderPrice"/>
         						</td>
         						<td class="secondtr" align="center" width="16.66%" height=20>
-        							<input type="button" value="删除" class="del" @click="delatetr()"/>
+        							<input type="button" value="删除" class="del" @click="delatetr(index)"/>
         						</td>
         					</tr>
         				</table>
@@ -158,18 +158,49 @@
 	       	 	regionCategoryList:[],
 	        	bidAuditCategoryList:[],
 	        	productCategoryList:[],
-	        	priceUnitCategoryList:[]
+	        	priceUnitCategoryList:[],
+	        	bidPkgList:[],
+	        	arrList:[{
+	        		pkgNum:null,
+	        		amount:null,
+	        		bidder:'',
+	        		productCategory:null,
+	        		tenderPrice:null,
+	        		unit:null
+	        		
+	        	}]
 	      }
 	    },
 	    methods: {
 	    	addlist(){
-	    		this.listshow++  //增加tr
+	    		this.arrList.push({//点击添加，往数组里面添加一个对象。
+	    			pkgNum:null,
+	        		amount:null,
+	        		bidder:'',
+	        		productCategory:null,
+	        		tenderPrice:null,
+	        		unit:null
+	    		})
 	    	},
-	    	delatetr(){
-	    		this.listshow--
+	    	delatetr(index){
+	    		if(index==0){//当点击第一行数据时，清除第一行内容
+	    			this.arrList[index].pkgNum = null;
+	    			this.arrList[index].amount = null;
+	    			this.arrList[index].bidder = '';
+	    			this.arrList[index].productCategory = null;
+	    			this.arrList[index].tenderPrice = null;
+	    			this.arrList[index].unit = null;
+	    			return
+	    		}
+	    		this.arrList.splice(index,1)//点击哪一个，就从哪一个开始删除1个数组元素。
 	    	},
 	      	onSubmit() {
-	        	var that = this;
+	      		
+	      		var that = this;
+//	      		console.log(this.bidPkgList)
+	      		that.bidPkgList = that.arrList
+	      		that.addBiddingform.bidPkgList = that.bidPkgList
+	      		
 	        	that.addBiddingform.id = this.uuid();//引入uuid唯一标识
 	        	that.addBiddingform.bidTime = Date.parse(new Date(that.addBiddingform.bidTime))//时间最终转为字符戳
 	        	this.$validator.validateAll().then(function(res){//固定用法格式
@@ -202,7 +233,7 @@
 	    created(){
 	    		var that = this;
 	    		this.$http.allCategory().then(function(data){//向后台拿取下拉列表数据
-	    		console.log(data)
+//	    		console.log(data)
 	    		that.areaCategoryList = data.data.areaCategoryList
 	    		that.regionCategoryList = data.data.regionCategoryList
 	    		that.bidAuditCategoryList = data.data.bidAuditCategoryList

@@ -11,7 +11,7 @@ import NumConvertUtil from './NumConvertUtil'//过滤器
 import uuid from './uuid'//uuid
 import ElementUI from 'element-ui';//引入element-ui组件
 import 'element-ui/lib/theme-chalk/index.css';
-
+import $ from 'jquery'
 //全局加载urlPath
 Object.defineProperty(Vue.prototype, '$http', {value: $http})
 
@@ -23,6 +23,9 @@ Object.defineProperty(Vue.prototype, 'NumConvertUtil', {value: NumConvertUtil})
 
 //全局加载uuid
 Object.defineProperty(Vue.prototype, 'uuid', {value: uuid})
+
+//全局加载uuid
+Object.defineProperty(Vue.prototype, '$', {value: $})
 
 //全局加载ui组件
 Vue.use(ElementUI);
