@@ -131,16 +131,12 @@
 
 		</el-form>
 		<!--添加附件-->
-			<el-upload
-		  class="upload-demo"
-		  ref="upload"
-		  action="https://jsonplaceholder.typicode.com/posts/"
-		  :on-preview="handlePreview"
-		  :on-remove="handleRemove"
-		  :file-list="fileList"
-		  :auto-upload="false">
-		  <el-button slot="trigger" size="small" type="primary">选取文件</el-button>
-		  <el-button style="margin-left: 10px;" size="small" type="success" @click="submitUpload">上传到服务器</el-button>
+			<el-upload class="upload-demo" ref="upload" action="https://jsonplaceholder.typicode.com/posts/" :on-preview="handlePreview"
+		    :on-remove="handleRemove"
+		    :file-list="fileList"
+		    :auto-upload="false">
+		    <el-button slot="trigger" size="small" type="primary">选取文件</el-button>
+		    <el-button style="margin-left: 10px;" size="small" type="success" @click="submitUpload">上传到服务器</el-button>
 		</el-upload>
 		
 	</div>
@@ -160,7 +156,7 @@
 	        	productCategoryList:[],
 	        	priceUnitCategoryList:[],
 	        	bidPkgList:[],
-	        	arrList:[{
+	        	arrList:[{//自定义一个数组来接收数据
 	        		pkgNum:null,
 	        		amount:null,
 	        		bidder:'',
@@ -197,8 +193,7 @@
 	      	onSubmit() {
 	      		
 	      		var that = this;
-//	      		console.log(this.bidPkgList)
-	      		that.bidPkgList = that.arrList
+	      		that.bidPkgList = that.arrList//让自定义数组和接口数组相等
 	      		that.addBiddingform.bidPkgList = that.bidPkgList
 	      		
 	        	that.addBiddingform.id = this.uuid();//引入uuid唯一标识
@@ -215,10 +210,6 @@
 						});
 		    		}
 		    	})
-	        	
-	        	
-	        	
-	        	
 	      	},
 		    submitUpload() {
 	        	this.$refs.upload.submit();

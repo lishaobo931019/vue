@@ -109,8 +109,28 @@
 					id:id
 				}
 			})
-		} ,           
-		
+		},
+		ContractAddUrl(opt){
+			return axios.post('/contract/add.json',{//添加合同
+				id:opt.id,
+				contractCode:opt.contractCode,//项目编号
+				contractCompany:opt.contractCompany,//合同单位
+				projectName:opt.projectName,//工程名称
+				depositBackTime:opt.depositBackTime,//质保金退回时间
+				completeAmount:opt.completeAmount,//已施工数量
+				totalQuantity:opt.totalQuantity,//应该施工总量
+				paid:opt.paid,//已付款
+				totalPrice:opt.totalPrice,//合同总价
+				preSignDate:opt.preSignDate,//预计签约时间
+				signDate:opt.signDate,//签约时间
+				deposit:opt.deposit,//质保金总额
+				area:opt.area,//地区
+				region:opt.region,//片区
+				taxCategory:opt.taxCategory,//发票类型
+				note:opt.note,//开票备注
+				comment:opt.comment//备注
+			})
+		},
 		
 		
 		
