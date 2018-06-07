@@ -135,14 +135,10 @@
         					</tr>
         					<tr v-for="(item,index) in arrList">
         						<td class="secondtr" align="center" width="25%" height=20 >
-        							<el-form-item>
-						  				{{index+1}}
-						  			</el-form-item>
+						  			<input type="text"  class="inpu"v-model="index" readonly="readonly"/>
         						</td>
         						<td class="secondtr" align="center" width="25%" height=20>
-        							<el-form-item  >
-							  			<el-input v-model="item.paid"></el-input>
-							  		</el-form-item>
+							  		<input type="text"  class="inpu"  v-model="item.paid"/>
         						</td>
         						
         						<td class="secondtr" align="center" width="25%" height=20>
@@ -177,21 +173,17 @@
         					</tr>
         					<tr v-for="(item,index) in arrList2" >
         						<td class="secondtr" align="center" width="10%" height=20 >
-        							<el-select v-model="item.productCategory" placeholder="无" >
-					      				<el-option label="无" value=""></el-option>
-					      				<el-option :label="item.category" :value="item.id" v-for="item in productCategoryList"></el-option>
-					    			</el-select>
-        								
+        							<select name="" v-model="item.productCategory" placeholder="无" style="width: 120px;">
+        								<option :label="item.category" :value="item.id" v-for="item in productCategoryList"></option>
+        							</select>	
         						</td>
         						<td class="secondtr" align="center" width="10%" height=20>
         								<input type="text"  class="inpu"v-model="item.unitPrice"/>
         						</td>
         						<td class="secondtr" align="center" width="10%" height=20>
-        							<el-select v-model="item.unit" placeholder="无" >
-					      				<el-option label="无" value=""></el-option>
-					      				<el-option :label="item.category" :value="item.id" v-for="item in priceUnitCategoryList"></el-option>
-					    			</el-select>
-        								
+        							<select name="" v-model="item.unit" placeholder="无" style="width: 120px;">
+        								<option  :label="item.category" :value="item.id" v-for="item in priceUnitCategoryList"></option>
+        							</select>	
         						</td>
         						<td class="secondtr" align="center" width="10%" height=20>
         								<input type="text"  class="inpu" v-model="item.amount"/>
@@ -255,7 +247,7 @@
 	    },
 	    computed:{
 	    	totalPrice(){ // 已付款
-	    		let total = 0;
+	    		let total = null;
 	    		this.arrList.map((item)=>{
 	    			if(item.paid){
 	    				total = total + item.paid*1
@@ -265,7 +257,7 @@
 	    		return total;
 	    	},
 	    	totalAmount(){ //施工总量
-	    		let total = 0;
+	    		let total = null;
 	    		this.arrList2.map(function(item){
 	    			if(item.amount){
 	    				total = total + item.amount*1;
@@ -274,7 +266,7 @@
 	    		return total;
 	    	},
 	    	totalPrix(){ // 合同总价
-	    		let total = 0;
+	    		let total = null;
 	    		this.arrList2.map(function(item){
 	    			if(item.summation){
 	    				total = total + item.summation*1;
@@ -452,14 +444,18 @@
 		border: 1px solid #ebeef5;
 	}
 	#addcontract #insidedata .inpu{
-		width: 20px;
+		width: 210px;
+		height: 23px;
+		border-radius: 4px;
 		border: 1px solid #D3DCE6;
 	}
 	#addcontract #insidedata .del{
 		width: 50px;
+		height: 23px;
 		background: #409EFF;
 		border: none;
 		color: #FFFFFF;
+		border: 1px solid ##409EFF;
 		font-size: 12px;
 	}
 	/*下面调整添加清单中的margin问题*/
