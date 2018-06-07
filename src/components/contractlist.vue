@@ -198,6 +198,7 @@
 		  		for(var i = 0; i < list.length; i++){//遍历所有的时间戳。转换成XX-XX-XX的形式赋值
 					list[i].signDate = that.NumConvertUtil.formatDate2(list[i].signDate)//签约时间
 					list[i].preSignDate = that.NumConvertUtil.formatDate2(list[i].preSignDate)//预计签约时间
+					list[i].depositBackTime = that.NumConvertUtil.formatDate2(list[i].depositBackTime)//质保金退回时间
 				}
 				that.contractlistFormtableData = list;//让列表数组等于后台返回的数组。
 	    		
@@ -232,6 +233,7 @@
 		  		for(var i = 0; i < list.length; i++){//遍历所有的时间戳。转换成XX-XX-XX的形式赋值
 					list[i].signDate = that.NumConvertUtil.formatDate2(list[i].signDate)//签约时间
 					list[i].preSignDate = that.NumConvertUtil.formatDate2(list[i].preSignDate)//预计签约时间
+					list[i].depositBackTime = that.NumConvertUtil.formatDate2(list[i].depositBackTime)//质保金退回日期
 				}
 				that.contractlistFormtableData = list;//让列表数组等于后台返回的数组。
 	    		
@@ -281,6 +283,7 @@
 	  		for(var i = 0; i < list.length; i++){//遍历所有的时间戳。转换成XX-XX-XX的形式赋值
 				list[i].signDate = that.NumConvertUtil.formatDate2(list[i].signDate)//签约时间
 				list[i].preSignDate = that.NumConvertUtil.formatDate2(list[i].preSignDate)//预计签约时间
+				list[i].depositBackTime = that.NumConvertUtil.formatDate2(list[i].depositBackTime)//质保金退回时间
 			}
 			that.contractlistFormtableData = list;//让列表数组等于后台返回的数组。
     		

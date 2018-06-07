@@ -97,6 +97,30 @@
 		            </td>
 		        </tr>
 				
+				<!---->
+				<tr>
+        			<td  colspan="4" style="width: 100%" align="center" bgColor="#f5fafe">
+        				<table  id="insidedata">
+        					<tr >
+        						<th class="firsttr" align="center" width="20%" height=20>序号</th>
+		                        <th class="firsttr" align="center" width="20%" height=20>已付款金额</th>
+		                        <th class="firsttr" align="center" width="20%" height=20>付款日期</th>
+        					</tr>
+        					<tr v-for="(item,index) in paymentList">
+        						<td class="secondtr" align="center" width="20%" height=20>{{index}}</td>
+        						<td class="secondtr" align="center" width="20%" height=20>{{item.paid}}</td>
+        						<td class="secondtr" align="center" width="20%" height=20>{{item.payTime}}</td>
+        					</tr>
+        				
+        				</table>
+        			</td>
+        		</tr>
+				
+				
+				
+				
+				
+				<!---->
 				<tr>
             		<td align="center" bgColor="#f5fafe">产品明细：</td>
           		 	<td colSpan="3"   align="left" bgColor="#f5fafe">
@@ -156,7 +180,8 @@
 	          	comment:'',
 	          	files:'',
 	          	trProductTable:[],
-	          	contractProductList:{}
+	          	contractProductList:{},
+	          	paymentList:{}
 			}
 		},
 		created(){
@@ -170,6 +195,7 @@
 				that.contractCompany = data.data.contractCompany
 				that.projectName = data.data.projectName
 				that.depositBackTime = data.data.depositBackTime
+				that.depositBackTime = that.NumConvertUtil.formatDate2(that.depositBackTime)//时间格式转变
 				that.completeAmount = data.data.completeAmount
 				that.totalQuantity = data.data.totalQuantity
 				that.paid = data.data.paid
@@ -184,6 +210,9 @@
 				that.comment = data.data.comment
 				that.files = data.data.files
 				that.contractProductList  = data.data.contractProductList
+				that.paymentList  = data.data.paymentList
+//				that.paymentList.payTime  = data.data.paymentList.payTime
+//				that.paymentList.payTime  = that.NumConvertUtil.formatDate2(that.paymentList.payTime)//时间格式转变
 				
 			})
 		},

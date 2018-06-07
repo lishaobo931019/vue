@@ -41,7 +41,7 @@
 					</td>
 					<td>
 						<el-form-item label="应该施工总量">
-				  			<el-input v-model="totalAmount"></el-input> <!--//addcontractform.totalQuantity-->
+				  			<el-input v-model="totalAmount" readonly="readonly"></el-input> <!--//addcontractform.totalQuantity-->
 				  		</el-form-item>
 					</td>
 				</tr>
@@ -49,12 +49,12 @@
 				<tr>
 					<td>
 						<el-form-item label="已付款" >
-				  			<el-input v-model="totalPrice"></el-input>
+				  			<el-input v-model="totalPrice" readonly="readonly"></el-input>
 				  		</el-form-item>
 					</td>
 					<td>
 						<el-form-item label="合同总价">
-				  			<el-input v-model="totalPrix"></el-input> <!--//addcontractform.totalPrice-->
+				  			<el-input v-model="totalPrix" readonly="readonly"></el-input> <!--//addcontractform.totalPrice-->
 				  		</el-form-item>
 					</td>
 				</tr>
@@ -236,7 +236,8 @@
 	        invoiceCategoryList:[],
 	        productCategoryList:[],//产品类型
 	        priceUnitCategoryList:[],//单位
-	        arrList2:[{
+	        contractProductList:[],//传数据第二个表格的数组
+	        arrList2:[{//自定义第二个表格数组
 	        	amount:null,
 	        	productCategory:null,
 	        	summation:null,
@@ -317,6 +318,19 @@
 	      	console.log(this.arrList)
 			var that = this;
 			that.addcontractform.id = this.uuid();//引入uuid唯一标识
+			
+			
+			that.paymentList = that.arrList;//让自定义数组1内容赋值给固定字段
+			that.addcontractform.paymentList = that.paymentList//把数组加入对象传值
+			
+			that.contractProductList = that.arrList2;//让自定义数组2内容赋值给固定字段
+			that.addcontractform.contractProductList = that.contractProductList//把数组加入对象传值
+			
+			 that.addcontractform.totalPrice=that.totalPrix //重新赋值合同总价
+			 that.addcontractform.paid=that.totalPrice //重新赋值已经付款
+			 that.addcontractform.totalQuantity=that.totalAmount //重新赋值施工总量
+			
+			
 	        this.$validator.validateAll().then(function(res){//固定用法格式
 		    		if(res){
 		    			console.log(res)
@@ -324,8 +338,10 @@
 						that.addcontractform.signDate = Date.parse(new Date(that.addcontractform.signDate))//时间最终转为字符戳
 						that.addcontractform.preSignDate = Date.parse(new Date(that.addcontractform.preSignDate))//时间最终转为字符戳
 		    			
+		    			
 		    			that.$http.ContractAddUrl(that.addcontractform).then(function(data){
 							console.log(data)
+							that.$router.push({path:'contractlist'});
 						}).catch(function (error) {
 						    console.log(error);
 						});

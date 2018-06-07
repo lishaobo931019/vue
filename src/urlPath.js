@@ -128,7 +128,9 @@
 				region:opt.region,//片区
 				taxCategory:opt.taxCategory,//发票类型
 				note:opt.note,//开票备注
-				comment:opt.comment//备注
+				comment:opt.comment,//备注
+//				paymentList:opt.paymentList,//第1个表格
+				contractProductList:opt.contractProductList//第二个表格
 			})
 		},
 		
