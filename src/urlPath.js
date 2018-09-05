@@ -15,6 +15,16 @@
 	export default{
 		//
 		//
+		
+		LoginUrl(opt){
+			return axios.get('/login.json',{//登陆
+				params:{
+					staffId:opt.staffId,
+					pwd:opt.pwd
+				}
+			})
+		},
+		
 		//**下面是一些echarts的接口**/
 		MonthVisit(){
 			return axios.get('/market/chart/month.json')//月度出访次数
@@ -61,6 +71,18 @@
 		biddingProportion(){
 			return axios.get('bid/chart/win/weight.json')//中标的占比情况
 		},		
+		bidCharTenderWeight(){
+			return axios.get('/bid/chart/tender/weight.json')//参与投标的中标占比
+		},
+		
+		bidChartWinTotalWeight(){
+			return axios.get('bid/chart/total/weight.json')//市场总额的中标占比情况
+		},
+		bidChartWinWeight(){
+			return axios.get('bid/chart/category/weight.json')//各公司中标占比
+		},
+		
+		
 		/***********/
 		
 		/***市场***/
@@ -95,6 +117,56 @@
 				}
 			})
 		},
+		Investigator(){
+			return axios.post("user/market/list.json")//调查人
+		},
+		SaveMarketUrl(opt){
+			return axios.post("/market/save.json",{//添加市场跟踪信息
+				surveyObject:opt.surveyObject,//拜访对象
+				responsiblePerson:opt.responsiblePerson,//责任人
+				workCategory:opt.workCategory,//任务类型
+				feedbackCategory:opt.feedbackCategory,//反馈类型
+				area:opt.area,//地区
+				region:opt.region,//片区
+				surveyStartTime:opt.surveyStartTime,//拜访时间
+				surveyDays:opt.surveyDays,//拜访天数
+				workContent:opt.workContent,//任务内容
+				feedback:opt.feedback,//反馈情况
+				comment:opt.comment,//备注
+				investigators:opt.investigators,//调查人
+//				contactsList:opt.contactsList,//添加
+				id:opt.id//uuid
+			})
+		},
+		marketDetail(file){
+			return axios.post('/market/detail.json',file,{//市场详情
+					headers:{
+						'Content-Type': 'multiple/form-data'
+					}
+			})
+		},
+		updateMarketUrl(opt){
+			return axios.post('/market/update.json',{//编辑页面的提交按钮
+				surveyObject:opt.surveyObject,//拜访对象
+				responsiblePerson:opt.responsiblePerson,//责任人
+				workCategory:opt.workCategory,//任务类型
+				feedbackCategory:opt.feedbackCategory,//反馈类型
+				area:opt.area,//地区
+				region:opt.region,//片区
+				surveyStartTime:opt.surveyStartTime,//拜访时间
+				surveyDays:opt.surveyDays,//拜访天数
+				workContent:opt.workContent,//任务内容
+				feedback:opt.feedback,//反馈情况
+				comment:opt.comment,//备注
+				investigators:opt.investigators,//调查人
+//				contactsList:opt.contactsList,//添加
+				id:opt.id//uuid
+			})
+		},
+		
+		
+		
+		
 		
 		//合同接口
 		Contractlist(file){
@@ -113,6 +185,7 @@
 		ContractAddUrl(opt){
 			return axios.post('/contract/add.json',{//添加合同
 				id:opt.id,
+				createDate:opt.createDate,//新增时间
 				contractCode:opt.contractCode,//项目编号
 				contractCompany:opt.contractCompany,//合同单位
 				projectName:opt.projectName,//工程名称
@@ -129,10 +202,41 @@
 				taxCategory:opt.taxCategory,//发票类型
 				note:opt.note,//开票备注
 				comment:opt.comment,//备注
-//				paymentList:opt.paymentList,//第1个表格
+				paymentList:opt.paymentList,//第1个表格
 				contractProductList:opt.contractProductList//第二个表格
 			})
 		},
+		ContractUpdateUrl(opt){
+			return axios.post("contract/update.json",{//更新编辑合同
+				id:opt.id,
+				contractCode:opt.contractCode,//项目编号
+				contractCompany:opt.contractCompany,//合同单位
+				projectName:opt.projectName,//工程名称
+				depositBackTime:opt.depositBackTime,//质保金退回时间
+				completeAmount:opt.completeAmount,//已施工数量
+				totalQuantity:opt.totalQuantity,//应该施工总量
+				paid:opt.paid,//已付款
+				totalPrice:opt.totalPrice,//合同总价
+				preSignDate:opt.preSignDate,//预计签约时间
+				signDate:opt.signDate,//签约时间
+				deposit:opt.deposit,//质保金总额
+				area:opt.area,//地区
+				region:opt.region,//片区
+				taxCategory:opt.taxCategory,//发票类型
+				note:opt.note,//开票备注
+				comment:opt.comment,//备注
+				paymentList:opt.paymentList,//第1个表格
+				contractProductList:opt.contractProductList,//第二个表格
+				amount:opt.amount,
+				summation:opt.summation,
+				createDate:opt.createDate//新增时间
+//				depositPayTime:opt.depositPayTime
+			})
+		},
+		
+		
+		
+		
 		
 		
 		
@@ -171,8 +275,21 @@
 				bidPkgList:opt.bidPkgList
 			})
 		},
-		
-		
+		bidUpdateUrl(opt){
+			return axios.post('/bid/update.json',{//修改招投标
+				area:opt.area,
+				bidAmount:opt.bidAmount,
+				bidCompany:opt.bidCompany,
+				bidProject:opt.bidProject,
+				bidSummary:opt.bidSummary,
+				bidTime:opt.bidTime,
+				comment:opt.comment,
+				id:opt.id,
+				region:opt.region,
+				status:opt.status,
+				bidPkgList:opt.bidPkgList
+			})
+		},
 		
 		
 		//用户的
@@ -214,6 +331,38 @@
 				staffId:opt.staffId
 			})
 		},
+		contactAddUrl(opt){
+			return axios.post('contacts/add.json',{//添加联系人接口
+				comment:opt.comment,
+				company:opt.company,
+				email:opt.email,
+				id:opt.id,
+				importanceLevel:opt.importanceLevel,
+				intro:opt.intro,
+				job:opt.job,
+				mobile:opt.mobile,
+				name:opt.name,
+				inputUser:opt.inputUser,//录入人
+				securityLevel:opt.securityLevel
+			})
+		},
+		contactUpdateUrl(opt){
+			return axios.post('/contacts/update.json',{//更新联系人
+				comment:opt.comment,
+				company:opt.company,
+				email:opt.email,
+				id:opt.id,
+				importanceLevel:opt.importanceLevel,
+				intro:opt.intro,
+				job:opt.job,
+				mobile:opt.mobile,
+				name:opt.name,
+				inputUser:opt.inputUser,//录入人
+				securityLevel:opt.securityLevel
+			})
+		},
+		
+		
 		
 		
 		
@@ -232,3 +381,6 @@
 		
 		deleteFile:"http://47.94.131.160:8080/web/file/delete/"
 	}
+
+
+//

@@ -2,7 +2,7 @@
 	<div id="personseezhezhaoceng">
 		<div id="personsee">
 			<h5>
-				<span id="close" @click="close">关闭</span>
+				<!--<span id="close" @click="close">关闭</span>-->
 			</h5>
 			<table cellSpacing="1" cellPadding="5" width="680" align="center" bgColor="#eeeeee" style="border:1px solid #8ba7e3"
 		           border="0">
@@ -73,7 +73,13 @@
 		                </div>
 		            </td>
 		        </tr>
-		
+		        <tr>
+			        	<td lclass="ta_01" bgColor="#ffffff" colSpan="4">
+			        		<el-row >
+  								<el-button type="primary" @click="close">关闭</el-button>
+							</el-row>
+			        	</td>
+			    </tr>
 		    </table>
 		</div>
 	</div>
@@ -113,7 +119,7 @@
 				that.securityLevel = data.data.securityLevel
 				that.intro = data.data.intro
 				that.comment = data.data.comment
-				that.username = data.data.user.name
+				that.username = data.data.user.name//录入人
 			})
 		},
 		methods:{
@@ -148,13 +154,6 @@
 	}
 	#personsee h5{
 		height: 1px;
-	}
-	#personsee #close{
-		position: absolute;
-		top:10px;
-		right: 10px;
-		color: red;
-		cursor: pointer;
-		font-size: 20px;
+		border:0;
 	}
 </style>

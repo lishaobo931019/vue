@@ -1,5 +1,6 @@
 <template>
-	<div>
+	<div id="markettracking">
+		<h5>市场跟踪</h5>
 		<el-form ref="form" :model="marketForm" label-width="80px" size="mini">
 			<table id="marketFormtopTab">
 				<!--第一行-->
@@ -55,7 +56,6 @@
 				</tr>
 				<!--第四行-->
 				<tr>
-					<td>
 						<el-form-item label="调查时间">
 					    	<el-col :span="11">
 					    		<el-date-picker type="date" placeholder="选择日期" v-model="marketForm.surveyStartTime" style="width: 100%;"></el-date-picker>
@@ -65,13 +65,15 @@
 					    		<el-date-picker type="date" placeholder="选择日期" v-model="marketForm.surveyEndTime" style="width: 100%;"></el-date-picker>
 					    	</el-col>
 						</el-form-item>
-					</td>
 					<td>
 						
 					</td>
 				</tr>
 				<!--第五行-->
 				<tr>
+					<td>
+						
+					</td>
 					<td>
 						<el-form-item size="large">
 						    <el-button type="primary" @click="onSubmit">查询</el-button>
@@ -84,6 +86,7 @@
 	<!---->
 	
 		<el-table :data="markettableData" id="markettableData" border >
+			<el-table-column type="index" label="编号" width="50"></el-table-column>
 			<el-table-column  prop="surveyObject" label="拜访对象" width="190" height="30"></el-table-column>
 			<el-table-column  prop="responsiblePerson" label="责任人" width="150"></el-table-column>
 			<el-table-column  prop="surveyStartTime" label="拜访日期" sortable width="150"></el-table-column>
@@ -106,8 +109,8 @@
 	      :total="totalNum">
 	    </el-pagination>
 	  </div>
-	  
-	  <marketedit v-if="marketedit"></marketedit>
+	  <!--编辑页面和查看页面的子组件-->
+	  <marketedit v-if="marketedit" v-on:marketedittwo="marketedittwo" :child-msg="id"></marketedit>
 	  <marketsee v-if="marketsee" v-on:marketseetwo="marketseetwo" :child-msg="id"></marketsee>
 	  
 	</div>
@@ -207,9 +210,10 @@
 
     },
     methods: {
-    	edit(){
-    		console.log(1)
+    	edit(scope){
+//  		console.log(scope.id)
     		this.marketedit = true;//点击编辑出现组件
+    		this.id = scope.id;
     	},
     	handleClick(scope){
     		this.marketsee = true;//点击查看出现组件
@@ -219,6 +223,9 @@
     	},
     	marketseetwo(res){
     		this.marketsee = res//父组件接收子组件的信息
+    	},
+    	marketedittwo(res){
+    		this.marketedit = res//父组件接收子组件的信息
     	},
     	formatDate(date){//转换时间格式
       	if(!date){
@@ -230,7 +237,7 @@
 	      	var day = date.getDate();
 	      	return year + '-' + ((month+1)<10?'0'+(month+1):(month+1)) + '-' +(day<10?'0'+day:day)
 	  
-	//    	console.log(date.getFullYear())
+	//    	consolconsolee.log(date.getFullYear())
       },
       onSubmit() {
       	this.currentPage1 = 1;
@@ -346,9 +353,22 @@
 	}
 	
 	#markettableData{
-		max-width: 1106px;
+		max-width: 1031px;
 		margin: 0 auto;
 	}
+	#markettracking h5{
+		color:#01a8a1;
+		height: 20px;
+	    border-bottom: 1px solid #01a8a1;
+	    text-align: left;
+	    line-height: 20px;
+	}
 	
+	/*修改文本框宽度*/
+	#markettracking .el-input--mini{
+		max-width: 193px!important;
+		float: left;
+	}
+
 	
 </style>

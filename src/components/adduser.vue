@@ -147,10 +147,11 @@
 <style>
 	
 	h5{
-		text-align: center;
-		height: 30px;
-		line-height: 30px;
-		width: 100%;
+		color:#01a8a1;
+		height: 20px;
+	    border-bottom: 1px solid #01a8a1;
+	    text-align: left;
+	    line-height: 20px;
 	}
 	/**/
 	#adduserTab{

@@ -4,7 +4,6 @@
    			 <input ref="fileCategory" type="hidden" value="market">   <!--ref标识表示市场页面-->
 			<h5>
 				市场跟踪报告
-				<span id="cancel" @click="cancel">关闭</span>
 			</h5>
 			<table cellSpacing="1" cellPadding="5" width="680" align="center" bgColor="#eeeeee" style="border:1px solid #8ba7e3" border="0">
 	        	<tr>
@@ -67,6 +66,13 @@
 		                <span style="margin-right: 10px;" id="" v-for="item in investigatorList">{{item.user.name}}</span>
 		            </td>
 		        </tr>
+		        <tr>
+			        	<td lclass="ta_01" bgColor="#f5fafe" colSpan="4">
+			        		<el-row >
+  								<el-button type="primary" @click="close">关闭</el-button>
+							</el-row>
+			        	</td>
+			    </tr>
 			</table>
 		</div>
 		<!--<div id="zhezhaoceng"></div>-->
@@ -97,13 +103,59 @@
 	    },
 	    props: ['childMsg'],//子组件接收父组件传来的参
 	    methods: {
-		      cancel(){//关闭按钮
+		      close(){//关闭按钮
 		      	this.$emit('marketseetwo',false)//子组件传给父组件的参数
 		      },
 		      yulan(item){//预览按钮
            		var category = this.$refs.fileCategory.value//获取dom节点——ref的用法
-            	var url = null;
-             	url = this.$http.previewFileUrl + category +"/" +this.id +"/" +item;
+           		
+           		
+           		var imgExt = new Array(".png",".jpg",".jpeg",".bmp",".gif");//图片文件的后缀名
+				var docExt = new Array(".doc",".docx");//word文件的后缀名
+				var xlsExt = new Array(".xls",".xlsx");//excel文件的后缀名
+				var cssExt = new Array(".css");//css文件的后缀名
+				var jsExt = new Array(".js");//js文件的后缀名
+           		
+           		
+           		//获取文件名后缀名
+				String.prototype.extension = function(){
+				    var ext = null;
+				    var name = this.toLowerCase();
+				    var i = name.lastIndexOf(".");
+				    if(i > -1){
+				        var ext = name.substring(i);
+				    }
+				    return ext;
+				}
+				
+				//判断Array中是否包含某个值
+				Array.prototype.contain = function(obj){
+				    for(var i=0; i<this.length; i++){
+				        if(this[i] === obj)
+				            return true;
+				    }
+				    return false;
+				};
+				
+				String.prototype.extMatch = function(extType){
+				    if(extType.contain(this.extension()))
+				        return true;
+				    else
+				        return false;
+				}
+           		
+				//           		
+           		//
+           		var url = null;
+           		if(item.extMatch(imgExt)){
+	                url = this.$http.imageFileUrl + category +"/" +this.id +"/" +item;
+	            }else{
+	                url = this.$http.previewFileUrl + category +"/" +this.id +"/" +item;
+	            }
+           		
+           		
+//          	var url = null;
+//           	url = this.$http.previewFileUrl + category +"/" +this.id +"/" +item;
             	window.open (url,"newWindow","height=500, width=800, toolbar =no, menubar=no, scrollbars=yes, resizable=yes, location=no, status=no");
 		      },
 		      download(item){
@@ -167,19 +219,12 @@
 		height: 10px;
 		text-align: center;
 		line-height: 5px;
-		/*border-bottom: 1px solid #000000;*/
+		color: black;
+		border-bottom:0;
 	}
 	#marketsee table .ta_01{
 		height: 10px;
 		width: 100px;
 		text-align: left;
-	}
-	#marketsee #cancel{
-		position: absolute;
-		top: 0;
-		right: 10px;
-		color: red;
-		cursor: pointer;
-		font-size: 20px;
 	}
 </style>

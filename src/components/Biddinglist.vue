@@ -1,6 +1,6 @@
 <template>
-	<div>
-		<h5 style="height: 10px;line-height: 10px;">招投标信息列表</h5>
+	<div id="biddinglist">
+		<h5>招投标信息列表</h5>
 		<el-form ref="form" :model="biddinglistForm" label-width="80px" size="mini">
 			<table id="biddinglistFormtopTab">
 				<!--第一行-->
@@ -68,7 +68,8 @@
 		</el-form>
 	<!---->
 	
-		<el-table :data="biddinglisttableData" border style="width: 100%">
+		<el-table :data="biddinglisttableData" border style="max-width: 1050px;margin:0 auto;margin-top:30px;">
+				<el-table-column type="index" label="编号" width="50"></el-table-column>
 			<el-table-column  prop="bidCompany" label="招标单位" width="150" height="30"></el-table-column>
 			<el-table-column  prop="bidProject" label="招标项目名称" width="150"></el-table-column>
 			<el-table-column  prop="bidTime" label="投标日期" sortable width="150"></el-table-column>
@@ -78,7 +79,7 @@
 		    <el-table-column  label="操作" width="100">
 		      	<template slot-scope="scope">
 		        	<el-button @click="handleClick(scope.row)" type="text" size="small">查看</el-button>
-		        	<el-button type="text" size="small">编辑</el-button>
+		        	<el-button type="text"@click="handleClick2(scope.row)" size="small">编辑</el-button>
 		      	</template>
 		    </el-table-column>
 		</el-table>
@@ -92,19 +93,23 @@
 	  </div>
 		
 		<biddingsee v-if="biddingsee" v-on:bidding="bidding" :child-msg="id"></biddingsee>
+		<biddingedit v-if="biddingedit" v-on:biddingeditt="biddingeditt" :child-msg="id"></biddingedit>
 		
 	</div>
 </template>
 
 <script>
 	import biddingsee from '@/components/biddingsee'//引入查看组件
+	import biddingedit from '@/components/biddingedit'//引入编辑组件
 	export default {
 	components:{
-		biddingsee:biddingsee	
+		biddingsee:biddingsee,
+		biddingedit:biddingedit
 	},
     data() {
       return {
       	id:null,
+      	biddingedit:false,
       	biddingsee:false,
       	totalNum:0,
       	currentPage1: 1,
@@ -146,13 +151,20 @@
       };
     },
     methods: {
-    	handleClick(scope){
+    	handleClick(scope){//查看
     		this.biddingsee = true
     		this.id = scope.id;
-    		console.log(scope.id)
+//  		console.log(scope.id)
+    	},
+    	handleClick2(scope){//编辑
+    		this.biddingedit = true
+    		this.id = scope.id;
     	},
     	bidding(res){
     		this.biddingsee = res//父组件接收子组件的信息 = res//父组件接收子组件的信息
+    	},
+    	biddingeditt(res){
+    		this.biddingedit = res//父组件接收子组件的信息 = res//父组件接收子组件的信息
     	},
     	formatDate(date){//转换时间格式
       	if(!date){
@@ -346,4 +358,13 @@
 	#biddinglistFormtopTab .el-input__inner{
 		width:219px
 	}
+	
+	#biddinglist h5{
+		color:#01a8a1;
+		height: 20px;
+	    border-bottom: 1px solid #01a8a1;
+	    text-align: left;
+	    line-height: 20px;
+	}
+	
 </style>

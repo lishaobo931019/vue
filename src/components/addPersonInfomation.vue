@@ -7,12 +7,14 @@
 				<tr>
 					<td>
 						<el-form-item label="姓名" >
-				  			<el-input></el-input>
+				  			<el-input v-model="addPersonInfoform.name"  v-validate="'required'" name="name1"></el-input>
+				  			<span class="tipsinfo" v-show="errors.has('name1')">不能为空</span>
 				  		</el-form-item>
 					</td>
 					<td>
 						<el-form-item label="所属单位">
-				  			<el-input></el-input>
+				  			<el-input v-model="addPersonInfoform.company" v-validate="'required'" name="name2"></el-input>
+				  			<span class="tipsinfo" v-show="errors.has('name1')">不能为空</span>
 				  		</el-form-item>
 					</td>
 				</tr>
@@ -20,12 +22,14 @@
 				<tr>
 					<td>
 						<el-form-item label="职位">
-					    	<el-input></el-input>
+					    	<el-input v-model="addPersonInfoform.job" v-validate="'required'" name="name3"></el-input>
+					    	<span class="tipsinfo" v-show="errors.has('name3')">不能为空</span>
 					  	</el-form-item>
 					</td>
 					<td>
 						<el-form-item label="联系电话">
-				    		<el-input></el-input>
+				    		<el-input v-model="addPersonInfoform.mobile" v-validate="'required'" name="name4"></el-input>
+				    		<span class="tipsinfo" v-show="errors.has('name4')">不能为空</span>
 				  		</el-form-item>
 					</td>
 				</tr>
@@ -33,14 +37,17 @@
 				<tr>
 					<td>
 						<el-form-item label="邮箱">
-			    			<el-input></el-input>
+			    			<el-input v-model="addPersonInfoform.email"></el-input>
 			  			</el-form-item>
 					</td>
 					<td>
 						<el-form-item label="安全级别">
-			    			<el-select v-model="addPersonInfoform.region" placeholder="无">
-			      				<el-option label="区域一" value="shanghai"></el-option>
-			      				<el-option label="区域二" value="beijing"></el-option>
+			    			<el-select v-model="addPersonInfoform.securityLevel" placeholder="无">
+			      				<el-option label="1" value="1"></el-option>
+			      				<el-option label="2" value="2"></el-option>
+			      				<el-option label="3" value="3"></el-option>
+			      				<el-option label="4" value="4"></el-option>
+			      				<el-option label="5" value="5"></el-option>
 			   				</el-select>
 			  			</el-form-item>
 					</td>
@@ -49,15 +56,18 @@
 				<tr>
 					<td>
 						<el-form-item label="职位重要度">
-					    	<el-select v-model="addPersonInfoform.region" placeholder="无">
-			      				<el-option label="区域一" value="shanghai"></el-option>
-			      				<el-option label="区域二" value="beijing"></el-option>
+					    	<el-select v-model="addPersonInfoform.importanceLevel" placeholder="无">
+			      				<el-option label="1" value="1"></el-option>
+			      				<el-option label="2" value="2"></el-option>
+			      				<el-option label="3" value="3"></el-option>
+			      				<el-option label="4" value="4"></el-option>
+			      				<el-option label="5" value="5"></el-option>
 			   				</el-select>
 						</el-form-item>
 					</td>
 					<td>
 						<el-form-item label="录入人" >
-				  			<el-input></el-input>
+				  			<el-input v-model="addPersonInfoform.inputUser" readonly="readonly"></el-input>
 				  		</el-form-item>
 					</td>
 				</tr>
@@ -67,11 +77,11 @@
 			<div class="text-ADDPersonInformationbox">
 				<!--第五行-->
 				<el-form-item label="简介" class="box">
-				    <el-input type="textarea"  v-model="addPersonInfoform.desc"></el-input>
+				    <el-input type="textarea"  v-model="addPersonInfoform.intro"></el-input>
 				</el-form-item>
 				<!--第六行-->
 				<el-form-item label="备注" class="box">
-					<el-input type="textarea"  v-model="addPersonInfoform.desc"></el-input>
+					<el-input type="textarea"  v-model="addPersonInfoform.comment"></el-input>
 				</el-form-item>
 			</div>
 			
@@ -87,33 +97,43 @@
 	export default {
 	    data() {
 	      return {
-	        addPersonInfoform: {
-	          name: '',
-	          region: '',
-	          date1: '',
-	          date2: '',
-	          delivery: false,
-	          type: [],
-	          resource: '',
-	          desc: ''
-	        }
+	        addPersonInfoform: {}
 	      }
 	    },
 	    methods: {
 	      onSubmit() {
-	        console.log('submit!');
+				
+				var that = this
+	    		that.addPersonInfoform.id = this.uuid();//引入uuid唯一标识
+	    		
+	    		this.$validator.validateAll().then(function(res){//固定用法格式
+		    		if(res){
+		    			
+		    			that.$http.contactAddUrl(that.addPersonInfoform).then(function(data){
+							console.log(data)
+							that.$router.push({path:'relationship'});
+						}).catch(function (error) {
+						    console.log(error);
+						});
+		    		}
+		    	})
+	    	
+				
 	      }
+	    },
+	    created(){
+	    	
 	    }
  	 }
 </script>
 
 <style>
-	
-	h5{
-		text-align: center;
-		height: 30px;
-		line-height: 30px;
-		width: 100%;
+	#addPersonInfo h5{
+		color:#01a8a1;
+		height: 20px;
+	    border-bottom: 1px solid #01a8a1;
+	    text-align: left;
+	    line-height: 20px;
 	}
 	/**/
 	#addPersonInfoTab{
@@ -157,5 +177,13 @@
 	#addPersonInfo .text-ADDPersonInformationbox{
 		max-width: 594px!important;
 		margin: 0 auto;
+	}
+	/*提示*/
+	#addPersonInfo .tipsinfo{
+		font-size: 10px;
+		color: red;
+		position: absolute;
+		top: 30px;
+		left: 3px;
 	}
 </style>

@@ -37,21 +37,21 @@
 
 <style>
 	#bigbox .el-header, .el-footer {
-    background-color: #B3C0D1;
+    background-color: #01a8a1;
     color: #333;
     text-align: center;
     line-height: 60px;
   }
   
   #bigbox .el-aside {
-    background-color: #D3DCE6;
+    background-color: #091b29;
     color: #333;
     text-align: center;
     line-height: 200px;
   }
   
   #bigbox .el-main {
-    background-color: #E9EEF3;
+    /*background-color: #E9EEF3;*/
     color: #333;
     text-align: center;
     /*line-height: 160px;*/

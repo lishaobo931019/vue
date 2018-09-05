@@ -26,10 +26,16 @@ import adduser from '@/components/adduser'//添加用户
 
 Vue.use(Router)//全局路由
 
-export default new Router({
+
+
+var router = new Router({
   routes: [
+  	{
+  		path:'/',
+  		redirect:'/login'
+  	},
     {
-      path: '/',//登录页
+      path: '/login',//登录页
       name: 'HelloWorld',
       component: HelloWorld
     },
@@ -108,3 +114,28 @@ export default new Router({
     }
   ]
 })
+
+
+router.beforeEach(function(to, from, next){
+	if(localStorage.getItem('name')&&localStorage.getItem('pass')){//判断是否有缓存
+		if (to.path === '/login') {
+				if(to.path == '/home'){
+					next()
+				}else{
+					next({path: '/home'})
+				}
+	      
+	    }else{
+	    	next()
+	    }
+	}else{//没有缓存时
+		if(to.path == '/login'){
+			next()
+		}else{
+			next({path: '/login'})
+		}
+	}
+})
+
+
+export default router

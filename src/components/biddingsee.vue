@@ -1,10 +1,9 @@
 <template>
-	<div id="">
+	<div id="biddingseezhezhaoceng">
 		<div id="biddingsee">
 			<input ref="fileCategory" type="hidden" value="market">   <!--ref标识表示市场页面-->
 			<h5>
 				添加招投标管理信息
-				<span id="cancel" @click="cancel">关闭</span>
 			</h5>
 			<table cellSpacing="1" cellPadding="5" width="680" align="center" bgColor="#eeeeee" style="border:1px solid #8ba7e3" border="0">
 	        	<tr>
@@ -67,7 +66,13 @@
         				</table>
         			</td>
         		</tr>
-        		
+        		<tr>
+			        	<td lclass="ta_01" bgColor="#f5fafe" colSpan="4">
+			        		<el-row >
+  								<el-button type="primary" @click="close">关闭</el-button>
+							</el-row>
+			        	</td>
+			    </tr>
         		
 			</table>
 		</div>
@@ -92,7 +97,7 @@
 			}
 		},
 		methods:{
-			 cancel(){//关闭按钮
+			 close(){//关闭按钮
 		      	this.$emit('bidding',false)//子组件传给父组件的参数
 		     }
 		},
@@ -122,6 +127,14 @@
 </script>
 
 <style>
+	/*遮罩层*/
+	#biddingseezhezhaoceng{
+		width: 100%;
+		height: 100%;
+		background: rgba(0,0,0,0);
+		position: fixed;
+		top: 0;
+	}
 	#biddingsee{
 		width: 50%;
 		position: absolute;
@@ -138,20 +151,13 @@
 		height: 10px;
 		text-align: center;
 		line-height: 5px;
-		/*border-bottom: 1px solid #000000;*/
+		border-bottom:0;
+		color: black;
 	}
 	#biddingsee table .ta_01{
 		height: 10px;
 		width: 100px;
 		text-align: left;
-	}
-	#biddingsee #cancel{
-		position: absolute;
-		top: 0;
-		right: 10px;
-		color: red;
-		cursor: pointer;
-		font-size: 20px;
 	}
 	#biddingsee #insidedata{
 		width: 100%;

@@ -1,9 +1,6 @@
 <template>
 	<div id="usermanagezhezhao">
 		<div id="usermanagelist">
-			<h5>
-				<span id="cancel" @click="cancel">关闭</span>
-			</h5>
 		<table cellSpacing="1" cellPadding="5" width="680" align="center" bgColor="#eeeeee" style="border:1px solid #8ba7e3"
 	           border="0">
 	        <tr>
@@ -38,6 +35,13 @@
 	                	{{comment}}
 	                </div>
 	            </td>
+	        </tr>
+	        <tr>
+	        	<td align="center" bgColor="#f5fafe" colSpan="4">
+		        	<el-row >
+	  					<el-button type="primary" @click="cancel">关闭</el-button>
+					</el-row>
+				</td>
 	        </tr>
 	    </table>
 
@@ -92,7 +96,7 @@
 		top: 120px;
 		border: 1px solid #333333;
 		background: #E9EEF3;
-		height: 300px;
+		height: 400px;
 		padding: 10px;
 		overflow: auto;
 	}
@@ -102,7 +106,7 @@
 		height: 10px;
 		text-align: center;
 		line-height: 5px;
-		/*border-bottom: 1px solid #000000;*/
+		border-bottom:0;
 	}
 	#usermanagelist #cancel{
 		position: absolute;

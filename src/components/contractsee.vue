@@ -1,9 +1,8 @@
 <template>
-	<div id="">
+	<div id="contractseezhezhaoceng">
 		<div id="contractsee">
 			<input ref="fileCategory" type="hidden" value="contract">   <!--ref标识表示市场页面-->
 			<h5>
-				<span id="cancel" @click="cancel">关闭</span>
 			</h5>
 			<table cellSpacing="1" cellPadding="5" width="680" align="center" bgColor="#eeeeee" style="border:1px solid #8ba7e3" border="0">
 		
@@ -148,7 +147,13 @@
         				</table>
         			</td>
         		</tr>
-        		
+        		<tr>
+			        	<td lclass="ta_01" bgColor="#f5fafe" colSpan="4">
+			        		<el-row >
+  								<el-button type="primary" @click="close">关闭</el-button>
+							</el-row>
+			        	</td>
+			    </tr>
         		
 		    </table>
 		   
@@ -211,14 +216,22 @@
 				that.files = data.data.files
 				that.contractProductList  = data.data.contractProductList
 				that.paymentList  = data.data.paymentList
-//				that.paymentList.payTime  = data.data.paymentList.payTime
+				that.paymentList.payTime  = data.data.paymentList.payTime
+				
+				//自定义接收paytime这个时间循环遍历来更改时间格式				
+				var paymentList = that.paymentList
+				for(var i=0;i <paymentList.length;i++){
+					paymentList[i].payTime = that.NumConvertUtil.formatDate2(paymentList[i].payTime)//时间格式转变
+					console.log(paymentList[i].payTime)
+				}
+				
 //				that.paymentList.payTime  = that.NumConvertUtil.formatDate2(that.paymentList.payTime)//时间格式转变
 				
 			})
 		},
 		props: ['childMsg'],//子组件接收父组件传来的参
 		methods:{
-			 cancel(){//关闭按钮
+			 close(){//关闭按钮
 		      	this.$emit('contractsee2',false)//子组件传给父组件的参数
 		     },
 		     yulan(item){
@@ -244,6 +257,14 @@
 </script>
 
 <style>
+	/*遮罩层*/
+	#contractseezhezhaoceng{
+		width: 100%;
+		height: 100%;
+		background: rgba(0,0,0,0);
+		position: fixed;
+		top: 0;
+	}
 	#contractsee{
 		width: 50%;
 		position: absolute;
@@ -273,15 +294,7 @@
 		height: 10px;
 		text-align: center;
 		line-height: 5px;
-		/*border-bottom: 1px solid #000000;*/
-	}
-	#contractsee #cancel{
-		position: absolute;
-		top: 0;
-		right: 10px;
-		color: red;
-		cursor: pointer;
-		font-size: 20px;
+		border-bottom:0;
 	}
 	#contractsee #note,#contractsee #comment{
 		text-align: left;

@@ -1,6 +1,10 @@
 var NumConvertUtil;
 
 NumConvertUtil = {
+	getShortMoney: function(num){
+        //return(num/10000)+"万";
+        return Math.round(num/10000*100)/100 +"万";
+    },
 
     getNumConvertMoney: function (num) {
 

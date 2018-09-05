@@ -1,6 +1,6 @@
 <template>
-	<div>
-		<h5 style="height: 10px;line-height: 10px;">合同列表</h5>
+	<div id="contractlist">
+		<h5 >合同列表</h5>
 		<el-form ref="form" :model="contractlistForm" label-width="80px" size="mini">
 			<table id="contractlistFormtopTab">
 				<!--第一行-->
@@ -60,6 +60,9 @@
 				<!--第五行-->
 				<tr>
 					<td>
+						
+					</td>
+					<td>
 						<el-form-item size="large">
 						    <el-button type="primary" @click="onSubmit">查询</el-button>
 						</el-form-item>
@@ -71,6 +74,7 @@
 	<!---->
 	
 		<el-table :data="contractlistFormtableData" id="contractlistFormtableData" border >
+			<el-table-column type="index" label="编号" width="50"></el-table-column>
 			<el-table-column  prop="contractCode" label="项目编号" width="150" height="30"></el-table-column>
 			<el-table-column  prop="projectName" label="工程名称" width="150"></el-table-column>
 			<el-table-column  prop="contractCompany" label="合同单位" width="150"></el-table-column>
@@ -96,7 +100,7 @@
 		    <el-table-column  label="操作" width="100">
 		      	<template slot-scope="scope">
 		        	<el-button @click="handleClick(scope.row)" type="text" size="small">查看</el-button>
-		        	<el-button type="text" size="small">编辑</el-button>
+		        	<el-button type="text" size="small" @click="edit(scope.row)">编辑</el-button>
 		      	</template>
 		    </el-table-column>
 		</el-table>
@@ -110,19 +114,23 @@
 		</div>
 		
 		<contractsee v-if="contractsee" v-on:contractsee2="contractsee2" :child-msg="id"></contractsee>
+		<contractedit v-if="contractedit" v-on:contractedit2="contractedit2" :child-msg="id"></contractedit>
 		
 	</div>
 </template>
 
 <script>
 	import contractsee from '@/components/contractsee'//引入查看组件
+	import contractedit from '@/components/contractedit'//引入编辑组件
 	export default {
 	
 	components:{
-		contractsee:contractsee
+		contractsee:contractsee,
+		contractedit:contractedit
 	},
     data() {
       return {
+      	contractedit:false,
       	contractsee:false,
       	id:null,
       	totalNum:0,
@@ -245,9 +253,16 @@
 			this.id = scope.id
 			this.contractsee=true
 		},
+		edit(scope){//打开编辑页面
+			this.contractedit=true
+			this.id = scope.id
+		},
 		contractsee2(res){
     		this.contractsee = res//父组件接收子组件的信息
     	},
+    	contractedit2(res){
+    		this.contractedit = res//父组件接收子组件的信息
+    	}
     },
     created(){
     	//获取合同类别信息
@@ -294,6 +309,15 @@
 </script>
 
 <style>
+	#contractlist h5{
+		color:#01a8a1;
+		height: 20px;
+	    border-bottom: 1px solid #01a8a1;
+	    text-align: left;
+	    line-height: 20px;
+	}
+	
+	
 	#contractlistFormtopTab{
 		margin: auto;
 	}
@@ -348,7 +372,14 @@
 		margin-left: 130px!important;
 	}
 	#contractlistFormtableData{
-		max-width: 1501px;
+		max-width: 1480px;
 		margin: 0 auto;
 	}
+	/*修改文本框宽度*/
+	#contractlist .el-input--mini{
+		max-width: 193px!important;
+		float: left;
+	}
+
+	
 </style>

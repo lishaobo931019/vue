@@ -191,15 +191,33 @@
 	    		this.arrList.splice(index,1)//点击哪一个，就从哪一个开始删除1个数组元素。
 	    	},
 	      	onSubmit() {
-	      		
 	      		var that = this;
-	      		that.bidPkgList = that.arrList//让自定义数组和接口数组相等
+	      		
+	      		//限制条件。当表格无内容时候让数组为空
+	      		for(var i = 0; i < this.arrList.length; i++){
+	      			for(var key in this.arrList[i]){
+	      				if(this.arrList[i][key]){
+	      					this.bidPkgList.push(this.arrList[i])
+	      					break;
+	      				}
+	      			}
+	      		}
+	      		
+	      	
 	      		that.addBiddingform.bidPkgList = that.bidPkgList
 	      		
 	        	that.addBiddingform.id = this.uuid();//引入uuid唯一标识
-	        	that.addBiddingform.bidTime = Date.parse(new Date(that.addBiddingform.bidTime))//时间最终转为字符戳
+	        	
+	        	
+
+	        	
+	        	
+	        	
 	        	this.$validator.validateAll().then(function(res){//固定用法格式
 		    		if(res){
+		    			
+		    			that.addBiddingform.bidTime = Date.parse(new Date(that.addBiddingform.bidTime))//时间最终转为字符戳
+		    			
 		    			console.log(res)
 		    			that.$http.bidAddUrl(that.addBiddingform).then(function(data){
 				        	console.log(data)
@@ -237,11 +255,12 @@
 
 <style>
 	
-	h5{
-		text-align: center;
-		height: 30px;
-		line-height: 30px;
-		width: 100%;
+	#addBiddingMarket h5{
+		color:#01a8a1;
+		height: 20px;
+	    border-bottom: 1px solid #01a8a1;
+	    text-align: left;
+	    line-height: 20px;
 	}
 	/**/
 	#addBiddingMarketTab{
@@ -324,7 +343,7 @@
 	}
 	#addBiddingMarket #insidedata .del{
 		width: 50px;
-		background: #409EFF;
+		background: #01a8a1;
 		border: none;
 		color: #FFFFFF;
 		font-size: 12px;
@@ -341,6 +360,9 @@
 		position: absolute;
 		top: 30px;
 		left: 3px;
+	}
+	#addBiddingMarket .el-button--small{
+		color:white !important;
 	}
 	
 </style>

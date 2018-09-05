@@ -61,8 +61,10 @@
 				<!---->
 				<tr>
 					<td>
-						<el-form-item label="质保金总额" >
-				  			<el-input v-model="addcontractform.deposit"></el-input>
+						<el-form-item label="合同预计签订时间">
+					    	<el-col :span="11">
+					    		<el-date-picker type="date" placeholder="选择日期" v-model="addcontractform.preSignDate"></el-date-picker>
+					   	 	</el-col>
 				  		</el-form-item>
 					</td>
 					<td>
@@ -104,7 +106,11 @@
 			   				</el-select>
 						</el-form-item>
 					</td>
-					
+					<td>
+						<el-form-item label="质保金总额" >
+				  			<el-input v-model="addcontractform.deposit"></el-input>
+				  		</el-form-item>
+					</td>
 				</tr>
 				
 			</table>
@@ -199,8 +205,6 @@
         		</table>
 				
 			</div>		
-				
-				
 				<el-form-item>
 				    <el-button type="primary" @click="onSubmit">保存</el-button>
 				    <el-button>取消</el-button>
@@ -225,6 +229,7 @@
 	export default {
 	    data() {
 	      return {
+	      	createDate:null,
 	      	fileList: [],
 	      	arrList:[{//自定义一个数组来接收数据
 	        		paid:null,
@@ -236,6 +241,7 @@
 	        invoiceCategoryList:[],
 	        productCategoryList:[],//产品类型
 	        priceUnitCategoryList:[],//单位
+	        paymentList:[],//传输第一个表格
 	        contractProductList:[],//传数据第二个表格的数组
 	        arrList2:[{//自定义第二个表格数组
 	        	amount:null,
@@ -316,16 +322,37 @@
 	      },
 	      onSubmit() {
 	      	console.log(this.arrList)
+	      	
+	      	
+	      	//限制条件。当表格无内容时候让数组为空
+	      		for(var i = 0; i < this.arrList.length; i++){
+	      			for(var key in this.arrList[i]){
+	      				this.arrList[i].payTime = Date.parse(new Date(this.arrList[i].payTime))//时间最终转为字符戳
+	      				if(this.arrList[i][key]){
+	      					this.paymentList.push(this.arrList[i])
+	      					break;
+	      				}
+	      			}
+	      		}
+	      	
+	      	
+	      	//限制条件。当表格无内容时候让数组为空
+	      		for(var i = 0; i < this.arrList2.length; i++){
+	      			for(var key in this.arrList2[i]){
+	      				if(this.arrList2[i][key]){
+	      					this.contractProductList.push(this.arrList2[i])
+	      					break;
+	      				}
+	      			}
+	      		}
+	      	
+	      	
 			var that = this;
 			that.addcontractform.id = this.uuid();//引入uuid唯一标识
 			
-			
-			that.paymentList = that.arrList;//让自定义数组1内容赋值给固定字段
+			that.addcontractform.createDate = that.createDate//把数组加入对象传值
 			that.addcontractform.paymentList = that.paymentList//把数组加入对象传值
-			
-			that.contractProductList = that.arrList2;//让自定义数组2内容赋值给固定字段
 			that.addcontractform.contractProductList = that.contractProductList//把数组加入对象传值
-			
 			 that.addcontractform.totalPrice=that.totalPrix //重新赋值合同总价
 			 that.addcontractform.paid=that.totalPrice //重新赋值已经付款
 			 that.addcontractform.totalQuantity=that.totalAmount //重新赋值施工总量
@@ -375,10 +402,11 @@
 <style>
 	
 	h5{
-		text-align: center;
-		height: 30px;
-		line-height: 30px;
-		width: 100%;
+		color:#01a8a1;
+		height: 20px;
+	    border-bottom: 1px solid #01a8a1;
+	    text-align: left;
+	    line-height: 20px;
 	}
 	/**/
 	#addcontractTab{
@@ -468,7 +496,7 @@
 	#addcontract #insidedata .del{
 		width: 50px;
 		height: 23px;
-		background: #409EFF;
+		background: #01a8a1;
 		border: none;
 		color: #FFFFFF;
 		border: 1px solid ##409EFF;
@@ -503,7 +531,7 @@
 	}
 	#addcontract #insidedata2 .del{
 		width: 50px;
-		background: #409EFF;
+		background: #01a8a1;
 		border: none;
 		color: #FFFFFF;
 		font-size: 12px;
@@ -519,5 +547,10 @@
 		position: absolute;
 		top: 30px;
 		left: 3px;
+	}
+	
+	
+	#addcontract .el-button--small{
+		color:white !important;
 	}
 </style>

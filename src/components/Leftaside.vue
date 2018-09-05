@@ -165,4 +165,34 @@
 	.yijibiaoti{
 		padding-right: 70px;
 	}
+	
+	.el-submenu__title i{
+		background:#122634!important;
+	}
+	
+	.el-submenu__title{
+		background:#122634!important;	
+		color: #8297a5!important;
+	}
+	.el-submenu__title:hover{
+		background: #1d3c4d!important;
+	}
+	.el-menu-item{
+		background:#122634!important;
+		color: #8297a5!important;	
+	}
+	.el-menu-item:hover{
+		background:#1d3c4d!important;	
+		color: #FFFFFF!important;
+	}
+	.el-menu-item.is-active{
+		background:#1d3c4d!important;	
+		color: #FFFFFF!important;	
+	}
+	.el-menu-item-group__title{
+		background:#122634!important;	
+	}
+	.el-submenu__title i{
+	 	color: #8297a5;	
+	}
 </style>

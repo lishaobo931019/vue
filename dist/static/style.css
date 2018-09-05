@@ -1,0 +1,22 @@
+.el-button--primary{
+	background: #01a8a1!important;
+	border: none!important;
+}
+.el-button--primary:hover{
+	background: #66afac!important;
+}
+.el-button--default:hover{
+	color: #66afac!important;
+}
+.el-button--small{
+	color: #01a8a1!important;
+}
+.el-button--small:hover{
+	color: #66afac!important;
+}
+.el-pager .active{
+	color: #01a8a1!important;
+}
+.el-pager li:hover{
+	color: #01a8a1!important;
+}

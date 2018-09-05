@@ -2,33 +2,10 @@
 	<div id="">
 		
 		<div id="logo">
-			航凯电力
+			
 		</div>
 		
-		
-		<el-dropdown trigger="click" class="mylogin">
-		  <span class="el-dropdown-link">
-		    	用户
-		    <i class="el-icon-caret-bottom el-icon--right"></i>
-		  </span>
-		  <el-dropdown-menu slot="dropdown">
-		    <el-dropdown-item class="clearfix">
-			退出
-		    </el-dropdown-item>
-		  </el-dropdown-menu>
-		</el-dropdown>
-		
-		
-		
-		
-		
-		
-		<el-input v-model="input" v-if="chuxian==true?true:false" placeholder="请输入内容" class="sousuo"></el-input>
-		<el-button type="primary" icon="el-icon-search" class="search" @click="sousuo()" >搜索</el-button>
-		
-		<el-badge is-dot class="item">
-		  <el-button class="share-button" icon="el-icon-message" type="primary"></el-button>
-		</el-badge>
+
 	
 		  	
 	</div>
@@ -56,7 +33,12 @@
 
 <style>
 	#logo{
-		display: inline-block;float:left
+		display: inline-block;float:left;
+		width: 190px;
+		height: 50px;
+		background: url(../assets/logo.jpg) center;
+		background-size: cover;
+		background-position: center center;
 	}
 	.item{
 		float: right;

@@ -42,7 +42,7 @@
 	
 	                },
 	                xAxis: {
-	                    data: ['2011','2012','2013']
+	                    data: []
 	                },
 	                yAxis: {
 	                    type : 'value',
@@ -55,7 +55,7 @@
 	                        barGap:'5%',
 	                        name: '第一季度',
 	                        type: 'bar',
-	                        data: [50,60,70],
+	                        data: [],
 	                        itemStyle:{
 	                            normal:{
 	                                label:{
@@ -72,7 +72,7 @@
 	                    {
 	                        name: '第二季度',
 	                        type: 'bar',
-	                        data: [44,55,66],
+	                        data: [],
 	                        itemStyle:{
 	                            normal:{
 	                                label:{
@@ -89,7 +89,7 @@
 	                    {
 	                        name: '第三季度',
 	                        type: 'bar',
-	                        data: [60,50,55],
+	                        data: [],
 	                        itemStyle:{
 	                            normal:{
 	                                label:{
@@ -106,7 +106,7 @@
 	                    {
 	                        name: '第四季度',
 	                        type: 'bar',
-	                        data: [50,40,60],
+	                        data: [],
 	                        itemStyle:{
 	                            normal:{
 	                                label:{
@@ -127,7 +127,30 @@
 			
 			//后台加载数据
 			this.$http.seasonVisit().then(function(res){
-//				console.log(res)
+				console.log(res)
+				 seaseonContainer.setOption({
+			        xAxis: {
+			            data:res.data.years
+			        },
+			        series: [
+				            {
+	                            name: '第一季度',
+	                            data: res.data.q1
+	                        },
+	                        {
+	                            name: '第二季度',
+	                            data: res.data.q2
+	                        },
+	                        {
+	                            name: '第三季度',
+	                            data: res.data.q3
+	                        },
+	                        {
+	                            name: '第四季度',
+	                            data: res.data.q4
+	                        }
+			        ]
+			    });
 			})
 				
 			//*/*/*/*/*/*/*/**/*/*/*/*/*/*/*/
@@ -141,7 +164,7 @@
 			        text: '月度出访次数',
 			        x:'center',
 			    },
-			    color: ['#4cabce'],
+			    color: ['#4cacaa'],//柱形图的背景颜色
 			    tooltip: {},
 			    legend: {
 			        data:['出访次数'],
@@ -150,24 +173,41 @@
 			    xAxis: {
 			        data: []
 			    },
-			    yAxis: {},
+			    yAxis: {
+	                    type : 'value',
+	                    axisLabel:{formatter:'{value} 次'}
+	
+	            },
 			    series: [{
 			        name: '出访次数',
 			        type: 'bar',
-			        data: []
+			        data: [],
+			        itemStyle:{
+                            normal:{
+                                label:{
+                                    show:true,
+                                    position:'top',
+                                    textStyle:{
+                                        fontSize : '15',
+                                        fontFamily : '微软雅黑',
+                                    }
+                                }
+                            }
+                        }
 			    }]
 			});
 			
 			// 异步加载数据
 			this.$http.MonthVisit().then(function(res){//调用接口
+				console.log(res)
 				 monthContainer.setOption({
 			        xAxis: {
-			            data:res.data.month
+			            data:res.data.titles
 			        },
 			        series: [{
 			            // 根据名字对应到相应的系列
 			            name:'出访次数',
-			            data:res.data.data
+			            data:res.data.pillars
 			        }]
 			    });
 			})
