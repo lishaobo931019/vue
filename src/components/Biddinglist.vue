@@ -94,7 +94,6 @@
 		
 		<biddingsee v-if="biddingsee" v-on:bidding="bidding" :child-msg="id"></biddingsee>
 		<biddingedit v-if="biddingedit" v-on:biddingeditt="biddingeditt" :child-msg="id"></biddingedit>
-		
 	</div>
 </template>
 

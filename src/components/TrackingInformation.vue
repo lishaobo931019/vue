@@ -292,4 +292,7 @@
 		top: 145px;
 		left: 3px;
 	}
+	#trackmarketinfo .el-button--small{
+		color:white !important;
+	}
 </style>
